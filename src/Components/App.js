@@ -24,13 +24,11 @@ function App() {
 
   function addToCart(id){
     setCart([...cart, id])
-    console.log("from addto cart in app: ", cart)
   }
 
   function removeFromCart(id){
     const updatedCart = cart.filter(item => item !== id)
     setCart(updatedCart)
-    console.log("from remove cart in app: ", cart)
   }
 
   const displayProducts = products.filter((eachProduct) => {
