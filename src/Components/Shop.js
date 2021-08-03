@@ -3,11 +3,11 @@ import Filters from './Filters'
 import ProductList from './ProductList'
 import Search from './Search'
 
-function Shop({ products}) { 
+function Shop({ products, setFilter }) { 
 
     return (
         <div className="shopContainer">
-            <Filters />
+            <Filters setFilter={setFilter} />
             <div>
                 <Search />
                 <ProductList products={products}/>

@@ -8,7 +8,7 @@ import Cart from './Cart'
 
 function App() {
   const [products, setProducts] = useState([])
-  const [filterProducts, setFilterProducts] = useState([])
+  const [filter, setFilter] = useState('')
 
   useEffect(() => {
     fetch(`http://localhost:3000/products`)
@@ -20,17 +20,25 @@ function App() {
     setProducts([...products, newProduct])
   }
 
-  function handleFilter(category) {
-    const newProducts = products.filter((eachProduct) => eachProduct.category === category)
-    setFilterProducts(newProducts)
-  }
+  const displayProducts = products.filter((eachProduct) => {
+    if (filter === '') {
+      return eachProduct
+    } else {
+      return eachProduct.category === filter
+    }
+  }).filter((eachProduct) => {
+    if (search) {
+      return eachProduct.title.toLowerCase().includes(search.toLowerCase())
+    } else {
+      return eachProduct
+    }
+  })
 
   console.log(products)
 
   return (
     <div>
      <Header />
-      <Filters handleFilter={handleFilter}/>
 
     <Switch>
       <Route path="/sell">
@@ -43,7 +51,7 @@ function App() {
         <Cart />
       </Route>
       <Route exact path="/">
-        <Shop products={products}/>
+        <Shop products={displayProducts} setFilter={setFilter}/>
       </Route>
     </Switch>
 
