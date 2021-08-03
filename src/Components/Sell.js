@@ -12,19 +12,17 @@ function Sell() {
     function onChange(e) {
         let name = e.target.name
         let value = e.target.value
-
         setFormData({...formData, [name]: value})
     }
 
     function handleSubmit(e) {
         e.preventDefault()
-
         setFormData({
             name: "",
             imageUrl: "",
             price: "",
-            category: "Default",
-            seller: "Default"
+            category: "default",
+            seller: "default"
         })
     }
 
@@ -72,7 +70,8 @@ function Sell() {
                     id="seller" 
                     aria-label="Sellers" 
                     value={formData.seller} 
-                    onChange={onChange}>
+                    onChange={onChange}
+                >
                     <option value="default">Select a seller</option>
                     <option value="jim">Jim Halpert</option>
                     <option value="pam">Pam Beesley</option>
@@ -80,10 +79,8 @@ function Sell() {
                     <option value="michael">Michael Scott</option>
                     <option value="jan">Jan Levinson</option>
                 </select>
-
                 <input type="submit" value="Submit" />
             </form>
-            
         </div>
     )
 }
