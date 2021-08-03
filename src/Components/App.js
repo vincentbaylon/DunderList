@@ -15,7 +15,11 @@ function App() {
     .then(setProducts)
   }, [])
 
-console.log(products)
+  function addProduct(newProduct) {
+    setProducts([...products, newProduct])
+  }
+
+  console.log(products)
 
   return (
     <div>
@@ -23,7 +27,7 @@ console.log(products)
 
     <Switch>
       <Route path="/sell">
-        <Sell />
+        <Sell addProduct={addProduct}/>
       </Route>
       <Route path="/about">
         <About />
