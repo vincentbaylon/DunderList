@@ -17,6 +17,17 @@ function Sell() {
 
     function handleSubmit(e) {
         e.preventDefault()
+
+        fetch('htpp://localhost:3000/products', {
+            method: 'POST',
+            heaaders: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        })
+        .then(res => res.json())
+        .then(newProduct => console.log(newProduct))
+
         setFormData({
             name: "",
             imageUrl: "",
