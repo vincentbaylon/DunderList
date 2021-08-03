@@ -32,7 +32,7 @@ console.log(products)
         <Cart />
       </Route>
       <Route exact path="/">
-        <Shop />
+        <Shop products={products}/>
       </Route>
     </Switch>
 
