@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
 
-function Filters({ setFilter }) {
+function Filters({ setFilter, filter }) {
     const [category, setCategory] = useState('')
-    const [checked, setChecked] = useState(false)
     const categories = [
         "Food",
         "Home",
@@ -25,12 +24,11 @@ function Filters({ setFilter }) {
     })
 
     function handleChange(e) {
-        if (!checked) {
-            setFilter(e.target.name)
-            setChecked(checked => !checked)
+        if (e.target.checked) {
+            setFilter([...filter, e.target.name])
         } else {
-            setFilter('')
-            setChecked(checked => !checked)
+            const newFilter = filter.filter((eachFilter) => eachFilter !== e.target.name)
+            setFilter(newFilter)
         }
     }
 

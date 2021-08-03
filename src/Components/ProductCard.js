@@ -5,6 +5,7 @@ function ProductCard( { product, addToCart, removeFromCart }) {
 
     const { id, title, image, seller, price, category, comments, inCart } = product
     const [isInCart, setIsInCart] = useState(false)
+    const [isLiked, setIsLiked] = useState(false)
 
 //temporary CSS
     const tempCardStyle = {
@@ -20,9 +21,14 @@ function ProductCard( { product, addToCart, removeFromCart }) {
         isInCart? removeFromCart(id) : addToCart(id)
         setIsInCart(!isInCart)
     }
-    
+
+    function handleLike(){
+        setIsLiked(!isLiked)
+    }
+
     return (
-        <div className="ui card" style={tempCardStyle}>
+        <div className="ui card" style={tempCardStyle}> 
+            <i onClick={handleLike} className={isLiked? "heart icon" : " heart outline icon"}></i>
             <img src={image} className="ui small centered image"/>
             <div >
             <h3 className="ui header">{title}</h3>

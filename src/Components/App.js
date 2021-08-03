@@ -8,7 +8,7 @@ import Cart from './Cart'
 
 function App() {
   const [products, setProducts] = useState([])
-  const [filter, setFilter] = useState('')
+  const [filter, setFilter] = useState([])
   const [search, setSearch] = useState('')
   const [sort, setSort] = useState('')
   const [cart, setCart] = useState([])
@@ -33,10 +33,11 @@ function App() {
   }
 
   const displayProducts = products.filter((eachProduct) => {
-    if (filter === '') {
+    console.log(filter)
+    if (filter.length < 1) {
       return eachProduct
     } else {
-      return eachProduct.category === filter
+      return filter.includes(eachProduct.category)
     }
   }).filter((eachProduct) => {
     if (search) {
@@ -48,10 +49,8 @@ function App() {
     if (sort === 'relevant') {
       if (firstProduct.id > firstProduct.id) return -1
     } else if (sort === 'priceHighLow') {
-      console.log(sort)
       if (firstProduct.price > secondProduct.price) return -1
     } else if (sort === 'priceLowHigh') {
-      console.log(sort)
       if (firstProduct.price < secondProduct.price) return -1
     }
   })
@@ -73,7 +72,7 @@ function App() {
         <Cart />
       </Route>
       <Route exact path="/">
-        <Shop products={displayProducts} setFilter={setFilter} search={search} setSearch={setSearch} addToCart={addToCart} removeFromCart={removeFromCart} setSort={setSort}/>
+        <Shop products={displayProducts} setFilter={setFilter} filter={filter} search={search} setSearch={setSearch} addToCart={addToCart} removeFromCart={removeFromCart} setSort={setSort}/>
       </Route>
     </Switch>
 
