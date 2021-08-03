@@ -11,6 +11,7 @@ function App() {
   const [filter, setFilter] = useState('')
   const [search, setSearch] = useState('')
   const [sort, setSort] = useState('')
+  const [cart, setCart] = useState([])
 
   useEffect(() => {
     fetch(`http://localhost:3000/products`)
@@ -20,6 +21,15 @@ function App() {
 
   function addProduct(newProduct) {
     setProducts([...products, newProduct])
+  }
+
+  function addToCart(id){
+    setCart([...cart, id])
+  }
+
+  function removeFromCart(id){
+    const updatedCart = cart.filter(item => item !== id)
+    setCart(updatedCart)
   }
 
   const displayProducts = products.filter((eachProduct) => {
@@ -46,7 +56,7 @@ function App() {
     }
   })
 
-  console.log(products)
+  //console.log(products)
 
   return (
     <div>
@@ -63,7 +73,7 @@ function App() {
         <Cart />
       </Route>
       <Route exact path="/">
-        <Shop products={displayProducts} setFilter={setFilter} search={search} setSearch={setSearch} setSort={setSort} />
+        <Shop products={displayProducts} setFilter={setFilter} search={search} setSearch={setSearch} addToCart={addToCart} removeFromCart={removeFromCart} setSort={setSort}/>
       </Route>
     </Switch>
 

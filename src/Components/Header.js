@@ -8,12 +8,14 @@ const headerStyle ={
     paddingTop: '10px',
     paddingLeft: '10px',
     display: 'flex',
+    height: '75px'
 }
 
 const logoStyle = {
     flex: '1',
     fontFamily: 'Impact',
-    fontSize: '20px'
+    fontSize: '40px',
+    letterSpacing: '.1rem',
 }
 
 const navStyle = {
@@ -40,7 +42,7 @@ function Header() {
     return (
         <header style={headerStyle}>
             <div id="logo" style={logoStyle}>
-            <h1>DunderList</h1>
+            <p>DunderList</p>
             </div>
             <div id="navBar" style={navStyle}>
                 <NavLink exact to="/" style={linkStyles} activeStyle={selectedLink}>Shop</NavLink>

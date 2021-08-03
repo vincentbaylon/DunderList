@@ -4,7 +4,7 @@ import ProductList from './ProductList'
 import Search from './Search'
 import Sort from './Sort'
 
-function Shop({ products, search, setSearch, setFilter, setSort }) { 
+function Shop({ products, search, setSearch, setFilter, addToCart, removeFromCart, setSort }) { 
 
     return (
         <div className="shopContainer">
@@ -12,7 +12,7 @@ function Shop({ products, search, setSearch, setFilter, setSort }) {
                 <Sort setSort={setSort} />
                 <Filters setFilter={setFilter} />
                 <Search seach={search} setSearch={setSearch}/>
-                <ProductList products={products}/>
+                <ProductList products={products} addToCart={addToCart} removeFromCart={removeFromCart}/>
             </div>
         </div>
     )
