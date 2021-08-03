@@ -1,12 +1,14 @@
 import React, { useState } from 'react'
 
-function Sell() {
+function Sell({ addProduct }) {
     const [formData, setFormData] = useState({
-        name: "",
-        imageUrl: "",
+        title: "",
+        image: "",
         price: "",
         category: "default",
-        seller: "default"
+        seller: "default",
+        comments: [],
+        inCart: false
     })
 
     function onChange(e) {
@@ -17,9 +19,20 @@ function Sell() {
 
     function handleSubmit(e) {
         e.preventDefault()
+
+        fetch('http://localhost:3000/products', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        })
+        .then(res => res.json())
+        .then(newProduct => addProduct(newProduct))
+
         setFormData({
-            name: "",
-            imageUrl: "",
+            title: "",
+            image: "",
             price: "",
             category: "default",
             seller: "default"
@@ -32,16 +45,16 @@ function Sell() {
             <form onSubmit={handleSubmit}>
                 <input 
                     onChange={onChange}
-                    value={formData.name} 
+                    value={formData.title} 
                     type="text" 
-                    name="name" 
+                    name="title" 
                     placeholder="Product Name" 
                 />
                 <input 
                     onChange={onChange}
-                    value={formData.imageUrl} 
+                    value={formData.image} 
                     type="text" 
-                    name="imageUrl" 
+                    name="image" 
                     placeholder="Image Url" 
                 />
                 <input 

@@ -8,6 +8,7 @@ import Cart from './Cart'
 
 function App() {
   const [products, setProducts] = useState([])
+  const [search, setSearch] = useState('')
 
   useEffect(() => {
     fetch(`http://localhost:3000/products`)
@@ -15,7 +16,14 @@ function App() {
     .then(setProducts)
   }, [])
 
-console.log(products)
+  function addProduct(newProduct) {
+    setProducts([...products, newProduct])
+  }
+
+  //console.log(products)
+
+  const displayProducts = search ? products.filter(product => product.title.toLowerCase().includes(search.toLowerCase())) : products
+
 
   return (
     <div>
@@ -23,7 +31,7 @@ console.log(products)
 
     <Switch>
       <Route path="/sell">
-        <Sell />
+        <Sell addProduct={addProduct}/>
       </Route>
       <Route path="/about">
         <About />
@@ -32,7 +40,7 @@ console.log(products)
         <Cart />
       </Route>
       <Route exact path="/">
-        <Shop products={products}/>
+        <Shop products={displayProducts} search={search} setSearch={setSearch}/>
       </Route>
     </Switch>
 
