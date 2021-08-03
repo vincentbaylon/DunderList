@@ -8,6 +8,7 @@ import Cart from './Cart'
 
 function App() {
   const [products, setProducts] = useState([])
+  const [filterProducts, setFilterProducts] = useState([])
 
   useEffect(() => {
     fetch(`http://localhost:3000/products`)
@@ -19,11 +20,17 @@ function App() {
     setProducts([...products, newProduct])
   }
 
+  function handleFilter(category) {
+    const newProducts = products.filter((eachProduct) => eachProduct.category === category)
+    setFilterProducts(newProducts)
+  }
+
   console.log(products)
 
   return (
     <div>
      <Header />
+      <Filters handleFilter={handleFilter}/>
 
     <Switch>
       <Route path="/sell">
