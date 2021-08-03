@@ -9,6 +9,7 @@ import Cart from './Cart'
 function App() {
   const [products, setProducts] = useState([])
   const [filter, setFilter] = useState('')
+  const [search, setSearch] = useState('')
 
   useEffect(() => {
     fetch(`http://localhost:3000/products`)
@@ -51,7 +52,7 @@ function App() {
         <Cart />
       </Route>
       <Route exact path="/">
-        <Shop products={displayProducts} setFilter={setFilter}/>
+        <Shop products={displayProducts} setFilter={setFilter} search={search} setSearch={setSearch}/>
       </Route>
     </Switch>
 

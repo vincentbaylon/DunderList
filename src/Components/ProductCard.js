@@ -1,4 +1,3 @@
-import { withWidth } from '@material-ui/core'
 import React from 'react'
 
 function ProductCard( { product }) {
@@ -18,6 +17,22 @@ function ProductCard( { product }) {
         padding: '5px',
         float: 'left',
     }
+
+    // function cartToggle(){
+    //     const updatedProduct = {
+    //             ...product,
+    //             inCart: !inCart
+    //     }
+
+    //     fetch(`http://localhost:3000/products/${id}`, {
+    //         method : 'PATCH',
+    //         headers: {
+    //             'content-type': 'application/json'}, 
+    //         body: JSON.stringify(updatedProduct)
+    //     }).then (res => res.json())
+    //     .then(updatedProd => console.log(updatedProd))
+    // }
+
     
     return (
         <div className="ui card" style={tempCardStyle}>
@@ -25,7 +40,7 @@ function ProductCard( { product }) {
             <h3>{title}</h3>
             <h5>{seller}</h5>
             <h5>${price}</h5>
-            <button>Add to Cart</button>
+            <button>{inCart? "Remove from Cart" : "Add to Cart"}</button>
         </div>
     )
 }

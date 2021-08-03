@@ -6,13 +6,21 @@ const headerStyle ={
     width: "100%",
     color: "white", 
     paddingTop: '10px',
-    paddingLeft: '10px'
+    paddingLeft: '10px',
+    display: 'flex',
+}
+
+const logoStyle = {
+    flex: '1',
+    fontFamily: 'Impact',
+    fontSize: '20px'
 }
 
 const navStyle = {
     textAlign: "right",
     paddingBottom: "10px",
-    paddingRight: "10px"
+    paddingRight: "10px",
+    margin: "auto"
 }
 
 const linkStyles = {
@@ -31,7 +39,7 @@ const selectedLink ={
 function Header() {
     return (
         <header style={headerStyle}>
-            <div id="logo" >
+            <div id="logo" style={logoStyle}>
             <h1>DunderList</h1>
             </div>
             <div id="navBar" style={navStyle}>
