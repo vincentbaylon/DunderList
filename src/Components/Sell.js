@@ -1,22 +1,81 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 function Sell() {
+    const [formData, setFormData] = useState({
+        name: "",
+        imageUrl: "",
+        price: "",
+        category: "default",
+        seller: "default"
+    })
+
+    function onChange(e) {
+        let name = e.target.name
+        let value = e.target.value
+
+        setFormData({...formData, [name]: value})
+    }
+
+    function handleSubmit(e) {
+        e.preventDefault()
+
+        setFormData({
+            name: "",
+            imageUrl: "",
+            price: "",
+            category: "Default",
+            seller: "Default"
+        })
+    }
+
     return (
         <div>
-            <form>
-                <input type="text" name="name" placeholder="Product Name" />
-                <input type="text" name="imageUrl" placeholder="Image Url" />
-                <input type="number" step="0.01" name="price" placeholder="Price" />
-                <select name="category" id="category" aria-label="Category">
-                    <option value="foodDrink">Food N Drink</option>
+            <form onSubmit={handleSubmit}>
+                <input 
+                    onChange={onChange}
+                    value={formData.name} 
+                    type="text" 
+                    name="name" 
+                    placeholder="Product Name" 
+                />
+                <input 
+                    onChange={onChange}
+                    value={formData.imageUrl} 
+                    type="text" 
+                    name="imageUrl" 
+                    placeholder="Image Url" 
+                />
+                <input 
+                    onChange={onChange}
+                    value={formData.price} 
+                    type="number" 
+                    step="0.01" 
+                    name="price" 
+                    placeholder="Price" 
+                />
+                <select 
+                    name="category" 
+                    id="category" 
+                    aria-label="Category" 
+                    value={formData.category} 
+                    onChange={onChange}
+                >
+                    <option value="default">Select a category</option>
+                    <option value="foodDrink">Food {"&"} Drink</option>
                     <option value="home">Home</option>
                     <option value="apparel">Apparel</option>
                     <option value="entertainment">Entertainment</option>
                     <option value="misc">Miscellaneous</option>
                 </select>
-                <select name="sellers" id="sellers" aria-label="Sellers">
+                <select 
+                    name="seller" 
+                    id="seller" 
+                    aria-label="Sellers" 
+                    value={formData.seller} 
+                    onChange={onChange}>
+                    <option value="default">Select a seller</option>
                     <option value="jim">Jim Halpert</option>
-                    <option value="pam">Pam Beasley</option>
+                    <option value="pam">Pam Beesley</option>
                     <option value="dwight">Dwight Schrute</option>
                     <option value="michael">Michael Scott</option>
                     <option value="jan">Jan Levinson</option>
