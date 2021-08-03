@@ -10,6 +10,7 @@ function App() {
   const [products, setProducts] = useState([])
   const [filter, setFilter] = useState('')
   const [search, setSearch] = useState('')
+  const [sort, setSort] = useState('')
 
   useEffect(() => {
     fetch(`http://localhost:3000/products`)
@@ -33,6 +34,16 @@ function App() {
     } else {
       return eachProduct
     }
+  }).sort((firstProduct, secondProduct) => {
+    if (sort === 'relevant') {
+      if (firstProduct.id > firstProduct.id) return -1 
+    } else if (sort === 'priceHighLow') {
+      console.log(sort)
+      if (firstProduct.price > secondProduct.price) return -1
+    } else if (sort === 'priceLowHigh') {
+      console.log(sort)
+      if (firstProduct.price < secondProduct.price) return -1
+    }
   })
 
   console.log(products)
@@ -52,7 +63,7 @@ function App() {
         <Cart />
       </Route>
       <Route exact path="/">
-        <Shop products={displayProducts} setFilter={setFilter} search={search} setSearch={setSearch}/>
+        <Shop products={displayProducts} setFilter={setFilter} search={search} setSearch={setSearch} setSort={setSort} />
       </Route>
     </Switch>
 
