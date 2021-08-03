@@ -7,7 +7,7 @@ function CartCard({ product, removeFromCart }) {
 
     return (
         <div>
-            <img style={{ width: "100px"}} src={image} />
+            <img style={{ width: "100px" }} src={image} />
             <h5>{title}</h5>
             <h5>{price}</h5>
             <button onClick={handleClick}>Remove</button>

@@ -48,7 +48,7 @@ function Header({ cart }) {
                 <NavLink exact to="/" style={linkStyles} activeStyle={selectedLink}>Shop</NavLink>
                 <NavLink to="/sell" style={linkStyles} activeStyle={selectedLink}>Sell</NavLink>
                 <NavLink to="/about" style={linkStyles} activeStyle={selectedLink}>About</NavLink>
-                <NavLink to="/cart" style={linkStyles} activeStyle={selectedLink}>Cart ({cart.length})</NavLink>
+                <NavLink to="/cart" style={linkStyles} activeStyle={selectedLink}>Cart {(cart.length > 0) ? `(${cart.length})` : '' }</NavLink>
             </div>
         </header>
     )
