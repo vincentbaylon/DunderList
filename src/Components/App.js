@@ -36,7 +36,7 @@ function App() {
     }
   }).sort((firstProduct, secondProduct) => {
     if (sort === 'relevant') {
-      if (firstProduct.id > firstProduct.id) return -1 
+      if (firstProduct.id > firstProduct.id) return -1
     } else if (sort === 'priceHighLow') {
       console.log(sort)
       if (firstProduct.price > secondProduct.price) return -1
@@ -50,7 +50,7 @@ function App() {
 
   return (
     <div>
-     <Header />
+      <Header />
 
     <Switch>
       <Route path="/sell">

@@ -4,7 +4,7 @@ function Filters({ setFilter }) {
     const [category, setCategory] = useState('')
     const [checked, setChecked] = useState(false)
     const categories = [
-        "Food & Drink",
+        "Food",
         "Home",
         "Apparel",
         "Entertainment",

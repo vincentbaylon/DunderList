@@ -73,11 +73,11 @@ function Sell({ addProduct }) {
                     onChange={onChange}
                 >
                     <option value="default">Select a category</option>
-                    <option value="foodDrink">Food {"&"} Drink</option>
-                    <option value="home">Home</option>
-                    <option value="apparel">Apparel</option>
-                    <option value="entertainment">Entertainment</option>
-                    <option value="misc">Miscellaneous</option>
+                    <option value="Food">Food {"&"} Drink</option>
+                    <option value="Home">Home</option>
+                    <option value="Apparel">Apparel</option>
+                    <option value="Entertainment">Entertainment</option>
+                    <option value="Miscellaneous">Miscellaneous</option>
                 </select>
                 <select 
                     name="seller" 
@@ -87,11 +87,11 @@ function Sell({ addProduct }) {
                     onChange={onChange}
                 >
                     <option value="default">Select a seller</option>
-                    <option value="jim">Jim Halpert</option>
-                    <option value="pam">Pam Beesley</option>
-                    <option value="dwight">Dwight Schrute</option>
-                    <option value="michael">Michael Scott</option>
-                    <option value="jan">Jan Levinson</option>
+                    <option value="Jim Halpert">Jim Halpert</option>
+                    <option value="Pam Beesley">Pam Beesley</option>
+                    <option value="Dwight Schrute">Dwight Schrute</option>
+                    <option value="Michael Scott">Michael Scott</option>
+                    <option value="Jan Levinson">Jan Levinson</option>
                 </select>
                 <input type="submit" value="Submit" />
             </form>
