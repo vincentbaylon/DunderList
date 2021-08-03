@@ -1,46 +1,35 @@
 import React from 'react'
+import { useState } from 'react'
 
-function ProductCard( { product }) {
+function ProductCard( { product, addToCart, removeFromCart }) {
 
     const { id, title, image, seller, price, category, comments, inCart } = product
+    const [isInCart, setIsInCart] = useState(false)
 
 //temporary CSS
-    const imgStyle = {
-        maxWidth: "200px"
-    }
-
     const tempCardStyle = {
-        backgroundColor: '#DCE1E9',
+        //backgroundColor: '#DCE1E9',
         margin: '5px',
-        width: '300px',
+        //width: '300px',
         textAlign: 'center',
         padding: '5px',
         float: 'left',
     }
 
-    // function cartToggle(){
-    //     const updatedProduct = {
-    //             ...product,
-    //             inCart: !inCart
-    //     }
-
-    //     fetch(`http://localhost:3000/products/${id}`, {
-    //         method : 'PATCH',
-    //         headers: {
-    //             'content-type': 'application/json'}, 
-    //         body: JSON.stringify(updatedProduct)
-    //     }).then (res => res.json())
-    //     .then(updatedProd => console.log(updatedProd))
-    // }
-
+    function handleCartToggle(){
+        isInCart? removeFromCart(id) : addToCart(id)
+        setIsInCart(!isInCart)
+    }
     
     return (
         <div className="ui card" style={tempCardStyle}>
-            <img src={image} style={imgStyle}/>
-            <h3>{title}</h3>
-            <h5>{seller}</h5>
-            <h5>${price}</h5>
-            <button>{inCart? "Remove from Cart" : "Add to Cart"}</button>
+            <img src={image} className="ui small centered image"/>
+            <div >
+            <h3 className="ui header">{title}</h3>
+            <h5 className="ui header">{seller}</h5>
+            <h5 className="ui header">${price}</h5> 
+            </div>
+            <button onClick={handleCartToggle}>{isInCart? "Remove from Cart" : "Add to Cart"}</button>
         </div>
     )
 }
