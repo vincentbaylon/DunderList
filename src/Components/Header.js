@@ -38,7 +38,7 @@ const selectedLink ={
 }
 
 
-function Header() {
+function Header({ cart }) {
     return (
         <header style={headerStyle}>
             <div id="logo" style={logoStyle}>
@@ -48,7 +48,7 @@ function Header() {
                 <NavLink exact to="/" style={linkStyles} activeStyle={selectedLink}>Shop</NavLink>
                 <NavLink to="/sell" style={linkStyles} activeStyle={selectedLink}>Sell</NavLink>
                 <NavLink to="/about" style={linkStyles} activeStyle={selectedLink}>About</NavLink>
-                <NavLink to="/cart" style={linkStyles} activeStyle={selectedLink}>Cart</NavLink>
+                <NavLink to="/cart" style={linkStyles} activeStyle={selectedLink}>Cart ({cart.length})</NavLink>
             </div>
         </header>
     )

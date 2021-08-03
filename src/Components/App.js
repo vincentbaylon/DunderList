@@ -33,7 +33,6 @@ function App() {
   }
 
   const displayProducts = products.filter((eachProduct) => {
-    console.log(filter)
     if (filter.length < 1) {
       return eachProduct
     } else {
@@ -59,7 +58,7 @@ function App() {
 
   return (
     <div>
-      <Header />
+      <Header cart={cart} />
 
     <Switch>
       <Route path="/sell">
@@ -69,7 +68,7 @@ function App() {
         <About />
       </Route>
       <Route path="/cart">
-        <Cart />
+        <Cart cart={cart} products={products} removeFromCart={removeFromCart} />
       </Route>
       <Route exact path="/">
         <Shop products={displayProducts} setFilter={setFilter} filter={filter} search={search} setSearch={setSearch} addToCart={addToCart} removeFromCart={removeFromCart} setSort={setSort}/>
