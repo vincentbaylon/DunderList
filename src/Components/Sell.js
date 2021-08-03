@@ -28,6 +28,7 @@ function Sell() {
 
     return (
         <div>
+            <h2>Add your product</h2>
             <form onSubmit={handleSubmit}>
                 <input 
                     onChange={onChange}
