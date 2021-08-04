@@ -75,7 +75,7 @@ function App() {
 
   return (
     <div>
-      <Header cart={cart} currentUser={currentUser}/>
+      <Header cart={cart} />
 
     <Switch>
       <Route path="/sell">
