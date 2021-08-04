@@ -15,10 +15,10 @@ function App() {
   const [cart, setCart] = useState([])
   const [sellers, setSellers] = useState([])
   const [currentUser, setCurrentUser] = useState(null)
+  const [loggedIn, setLoggedIn] = useState(false)
 
   //array of only names of the sellers
   const sellerNames = sellers.map(seller => seller.name)
-
 
   useEffect(() => {
     fetch(`http://localhost:3000/products`)
@@ -33,7 +33,16 @@ function App() {
        // console.log('external fetch done')
         setSellers(data.map(item => item.character))
     })
-}, [])
+  }, [])
+
+  useEffect(() => {
+    if (loggedIn) {
+      fetch(`http://localhost:3000/users/${currentUser.user.id}`)
+      .then(res => res.json())
+      .then(user => setCart(user.cart))
+    }
+  }, [loggedIn])
+
 
   function addProduct(newProduct) {
     setProducts([...products, newProduct])
@@ -42,11 +51,41 @@ function App() {
   function addToCart(id){
     if (cart.includes(id)) setCart(cart)
     else setCart([...cart, id])
+
+    if (loggedIn) {
+      fetch(`http://localhost:3000/users/${currentUser.user.id}`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${currentUser.accessToken}`
+        },
+        body: JSON.stringify({
+          "cart": cart
+        })
+      })
+      .then(res => res.json())
+      .then(data => data)
+    }
   }
 
   function removeFromCart(id){
     const updatedCart = cart.filter(item => item !== id)
     setCart(updatedCart)
+
+    if (loggedIn) {
+      fetch(`http://localhost:3000/users/${currentUser.user.id}`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${currentUser.accessToken}`
+        },
+        body: JSON.stringify({
+          "cart": cart
+        })
+      })
+      .then(res => res.json())
+      .then(data => data)
+    }
   }
 
   const displayProducts = products.filter((eachProduct) => {
@@ -75,7 +114,7 @@ function App() {
 
   return (
     <div>
-      <Header cart={cart} />
+      <Header cart={cart} loggedIn={loggedIn} setCurrentUser={setCurrentUser} setLoggedIn={setLoggedIn} />
 
     <Switch>
       <Route path="/sell">
@@ -88,7 +127,7 @@ function App() {
         <Cart cart={cart} products={products} removeFromCart={removeFromCart} />
       </Route>
       <Route path="/login">
-        <Login setCurrentUser={setCurrentUser} />
+        <Login setCurrentUser={setCurrentUser} setLoggedIn={setLoggedIn} />
       </Route>
       <Route exact path="/">
         <Shop products={displayProducts} setFilter={setFilter} filter={filter} search={search} setSearch={setSearch} addToCart={addToCart} removeFromCart={removeFromCart} setSort={setSort} cart={cart} />

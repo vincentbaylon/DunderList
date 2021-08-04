@@ -37,8 +37,12 @@ const selectedLink ={
     fontWeight: "bold"
 }
 
+function Header({ cart, loggedIn, setCurrentUser, setLoggedIn }) {
+    function handleClick() {
+        setCurrentUser(null)
+        setLoggedIn(false)
+    }
 
-function Header({ cart }) {
     return (
         <header style={headerStyle} className="ui container">
             <div id="logo" style={logoStyle}>
@@ -49,7 +53,12 @@ function Header({ cart }) {
                 <NavLink to="/sell" style={linkStyles} activeStyle={selectedLink}>Sell</NavLink>
                 <NavLink to="/about" style={linkStyles} activeStyle={selectedLink}>About</NavLink>
                 <NavLink to="/cart" style={linkStyles} activeStyle={selectedLink}>Cart {(cart.length > 0) ? `(${cart.length})` : '' }</NavLink>
-                <NavLink to="/login" style={linkStyles} activeStyle={selectedLink}>Login</NavLink>
+
+                {loggedIn ? 
+                    <button onClick={handleClick} style={linkStyles}>Logout</button> :
+                    <NavLink to="/login" style={linkStyles} activeStyle={selectedLink}>Login</NavLink>  
+                }
+                
             </div>
         </header>
     )

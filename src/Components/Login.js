@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 
-function Login({ setCurrentUser }) {
+function Login({ setCurrentUser, setLoggedIn }) {
     const history = useHistory()
     const [login, setLogin] = useState(true)
     const [formData, setFormData] = useState({
@@ -37,6 +37,7 @@ function Login({ setCurrentUser }) {
                     alert(data)
                 } else {
                     setCurrentUser(data)
+                    setLoggedIn(true)
                     alert("Logged in")
                     history.push("/")
                 }
