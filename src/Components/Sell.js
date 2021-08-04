@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-function Sell({ addProduct, sellerNames }) {
+function Sell({ addProduct, sellerNames, currentUser }) {
     const [formData, setFormData] = useState({
         title: "",
         image: "",
@@ -20,23 +20,28 @@ function Sell({ addProduct, sellerNames }) {
     function handleSubmit(e) {
         e.preventDefault()
 
-        fetch('http://localhost:3000/products', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(formData)
-        })
-        .then(res => res.json())
-        .then(newProduct => addProduct(newProduct))
-
-        setFormData({
-            title: "",
-            image: "",
-            price: "",
-            category: "default",
-            seller: "default"
-        })
+        if (currentUser !== null) {
+            fetch('http://localhost:3000/products', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            })
+            .then(res => res.json())
+            .then(newProduct => addProduct(newProduct))
+            alert('Product successfully added')
+    
+            setFormData({
+                title: "",
+                image: "",
+                price: "",
+                category: "default",
+                seller: "default"
+            })
+        } else {
+            alert('Please sign in to submit a new product')
+        }
     }
 
     const sellerList = sellerNames.map((seller) => {

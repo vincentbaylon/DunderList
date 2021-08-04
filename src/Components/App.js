@@ -118,7 +118,7 @@ function App() {
 
     <Switch>
       <Route path="/sell">
-        <Sell addProduct={addProduct} sellerNames={sellerNames}/>
+        <Sell addProduct={addProduct} sellerNames={sellerNames} currentUser={currentUser}/>
       </Route>
       <Route path="/about">
         <About sellers={sellers}/>

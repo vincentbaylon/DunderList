@@ -87,7 +87,7 @@ function Login({ setCurrentUser, setLoggedIn }) {
                     <input type="password" name="password" placeholder="Password" value={formData.password} onChange={handleChange}></input>
                 </div>
                 <div className="field">
-                    <input type="submit" value={login ? "Login" : "Sign Up"}></input>
+                    <input type="submit" className="ui button" value={login ? "Login" : "Sign Up"}></input>
                 </div>                
             </form>
             <br></br>
@@ -96,11 +96,11 @@ function Login({ setCurrentUser, setLoggedIn }) {
                 {login ? 
                     <>
                     <p>Don't have an acccount?</p>
-                    <button onClick={handleClick}>Sign Up</button>
+                    <button className="ui button" onClick={handleClick}>Sign Up</button>
                     </> : 
                     <>
                     <p>Already have an acccount?</p>
-                    <button onClick={handleClick}>Login</button>
+                    <button className="ui button" onClick={handleClick}>Login</button>
                     </>
                 }
             </div>
