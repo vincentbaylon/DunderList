@@ -39,7 +39,8 @@ function App() {
   }
 
   function addToCart(id){
-    setCart([...cart, id])
+    if (cart.includes(id)) setCart(cart)
+    else setCart([...cart, id])
   }
 
   function removeFromCart(id){
@@ -89,7 +90,7 @@ function App() {
         <Login />
       </Route>
       <Route exact path="/">
-        <Shop products={displayProducts} setFilter={setFilter} filter={filter} search={search} setSearch={setSearch} addToCart={addToCart} removeFromCart={removeFromCart} setSort={setSort} />
+        <Shop products={displayProducts} setFilter={setFilter} filter={filter} search={search} setSearch={setSearch} addToCart={addToCart} removeFromCart={removeFromCart} setSort={setSort} cart={cart} />
       </Route>
     </Switch>
 

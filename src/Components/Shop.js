@@ -4,7 +4,7 @@ import ProductList from './ProductList'
 import Search from './Search'
 import Sort from './Sort'
 
-function Shop({ products, search, setSearch, setFilter, addToCart, removeFromCart, setSort, filter }) { 
+function Shop({ products, search, setSearch, setFilter, addToCart, removeFromCart, setSort, filter, cart}) { 
 
     const sideBarStyle ={
         float: 'left',
@@ -30,7 +30,7 @@ function Shop({ products, search, setSearch, setFilter, addToCart, removeFromCar
                     <Filters filter={filter} setFilter={setFilter}  sideBarElementStyle={sideBarElementStyle}/>
                     <Search seach={search} setSearch={setSearch} sideBarElementStyle={sideBarElementStyle}/>
                 </div>
-                <ProductList products={products} addToCart={addToCart} removeFromCart={removeFromCart}/>
+                <ProductList products={products} addToCart={addToCart} removeFromCart={removeFromCart} cart={cart}/>
         </div>
     )
 }
