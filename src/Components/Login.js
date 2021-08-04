@@ -29,8 +29,10 @@ function Login() {
             body: JSON.stringify(formData)
         })
         .then(res => res.json())
-        .then(data => console.log(data))
-        
+        .then(data => console.log('SUCCESS', data))
+        .catch((error) => {
+            console.error('ERROR', error)
+        })
 
         setFormData({
             email: '',
