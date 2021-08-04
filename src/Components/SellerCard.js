@@ -25,7 +25,6 @@ function SellerCard( {seller} ) {
                 <img src={seller.image.medium} className="ui small centered image" alt={seller.name} style={tempImgStyle}/>
             </div>
             <h3 className="ui header">{seller.name}</h3>
-            <p className="ui meta">See {seller.name.split(' ', 1)}'s products here</p>
         </div>
     )
 }

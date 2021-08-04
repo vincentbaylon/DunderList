@@ -6,6 +6,9 @@ function About( { sellers }) {
     return (
         <div className="ui center aligned container">
             <br></br>
+            <h2>About</h2>
+            <p>DunderList is an online marketplace where employees of Dunder Mifflin (Scranton branch) can buy and sell items.</p>
+            <br></br>
             <h2>Meet the Sellers</h2>
             <br></br>
             <SellerList sellers={sellers}/>

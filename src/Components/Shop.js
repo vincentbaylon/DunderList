@@ -12,8 +12,8 @@ function Shop({ products, search, setSearch, setFilter, addToCart, removeFromCar
         width: '15%',
         padding: '20px',
         marginTop: '20px',
-        display: 'block',
-       // backgroundColor: 'gray',
+        minWidth: '225px'
+        //display: 'block',
     }
 
     const sideBarElementStyle = {
@@ -23,8 +23,8 @@ function Shop({ products, search, setSearch, setFilter, addToCart, removeFromCar
 
 
     return (
-        <div className="row">
-                <div className="ui " style={sideBarStyle}>
+        <div className="ui ">
+                <div className="column" style={sideBarStyle}>
                     <Sort setSort={setSort} sideBarElementStyle={sideBarElementStyle}/>
                     <Filters filter={filter} setFilter={setFilter}  sideBarElementStyle={sideBarElementStyle}/>
                     <Search seach={search} setSearch={setSearch} sideBarElementStyle={sideBarElementStyle}/>

@@ -1,6 +1,8 @@
 import { useState } from 'react'
+import { useHistory } from 'react-router-dom'
 
-function Login() {
+function Login({ setCurrentUser }) {
+    const history = useHistory()
     const [login, setLogin] = useState(true)
     const [formData, setFormData] = useState({
         email: '',
@@ -22,7 +24,23 @@ function Login() {
         e.preventDefault()
 
         if (login) {
-            console.log("LOGGING IN")
+            fetch('http://localhost:3000/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (typeof data !== 'object') {
+                    alert(data)
+                } else {
+                    setCurrentUser(data)
+                    alert("Logged in")
+                    history.push("/")
+                }
+            })
         } else {
             fetch('http://localhost:3000/users')
             .then(res => res.json())
@@ -68,7 +86,7 @@ function Login() {
                     <input type="password" name="password" placeholder="Password" value={formData.password} onChange={handleChange}></input>
                 </div>
                 <div className="field">
-                    <input type="submit" value={login ? "Login" : "Sign Up"}></input>
+                    <input type="submit" className="ui button" value={login ? "Login" : "Sign Up"}></input>
                 </div>                
             </form>
             <br></br>
@@ -77,11 +95,11 @@ function Login() {
                 {login ? 
                     <>
                     <p>Don't have an acccount?</p>
-                    <button onClick={handleClick}>Sign Up</button>
+                    <button className="ui button" onClick={handleClick}>Sign Up</button>
                     </> : 
                     <>
                     <p>Already have an acccount?</p>
-                    <button onClick={handleClick}>Login</button>
+                    <button className="ui button" onClick={handleClick}>Login</button>
                     </>
                 }
             </div>

@@ -38,7 +38,7 @@ const selectedLink ={
 }
 
 
-function Header({ cart }) {
+function Header({ cart, currentUser}) {
     return (
         <header style={headerStyle} className="ui container">
             <div id="logo" style={logoStyle}>
@@ -49,7 +49,7 @@ function Header({ cart }) {
                 <NavLink to="/sell" style={linkStyles} activeStyle={selectedLink}>Sell</NavLink>
                 <NavLink to="/about" style={linkStyles} activeStyle={selectedLink}>About</NavLink>
                 <NavLink to="/cart" style={linkStyles} activeStyle={selectedLink}>Cart {(cart.length > 0) ? `(${cart.length})` : '' }</NavLink>
-                <NavLink to="/login" style={linkStyles} activeStyle={selectedLink}>Login</NavLink>
+                <NavLink to="/login" style={linkStyles} activeStyle={selectedLink}>{currentUser? "Logged In" : "Log In"}</NavLink>
             </div>
         </header>
     )
