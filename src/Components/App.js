@@ -12,12 +12,26 @@ function App() {
   const [search, setSearch] = useState('')
   const [sort, setSort] = useState('')
   const [cart, setCart] = useState([])
+  const [sellers, setSellers] = useState([])
+
+  //array of only names of the sellers
+  const sellerNames = sellers.map(seller => seller.name)
+
 
   useEffect(() => {
     fetch(`http://localhost:3000/products`)
     .then(res => res.json())
     .then(setProducts)
   }, [])
+
+  useEffect(() => {
+    fetch(`https://api.tvmaze.com/shows/526/cast`)
+    .then(res => res.json())
+    .then(data => {
+        console.log('external fetch done')
+        setSellers(data.map(item => item.character))
+    })
+}, [])
 
   function addProduct(newProduct) {
     setProducts([...products, newProduct])
@@ -62,16 +76,16 @@ function App() {
 
     <Switch>
       <Route path="/sell">
-        <Sell addProduct={addProduct}/>
+        <Sell addProduct={addProduct} sellerNames={sellerNames}/>
       </Route>
       <Route path="/about">
-        <About />
+        <About sellers={sellers}/>
       </Route>
       <Route path="/cart">
         <Cart cart={cart} products={products} removeFromCart={removeFromCart} />
       </Route>
       <Route exact path="/">
-        <Shop products={displayProducts} setFilter={setFilter} filter={filter} search={search} setSearch={setSearch} addToCart={addToCart} removeFromCart={removeFromCart} setSort={setSort}/>
+        <Shop products={displayProducts} setFilter={setFilter} filter={filter} search={search} setSearch={setSearch} addToCart={addToCart} removeFromCart={removeFromCart} setSort={setSort} />
       </Route>
     </Switch>
 

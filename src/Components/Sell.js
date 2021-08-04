@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-function Sell({ addProduct }) {
+function Sell({ addProduct, sellerNames }) {
     const [formData, setFormData] = useState({
         title: "",
         image: "",
@@ -39,10 +39,21 @@ function Sell({ addProduct }) {
         })
     }
 
+    const sellerList = sellerNames.map((seller) => {
+        return (
+            <option value={seller} key={seller}>{seller}</option> 
+        )
+    })
+
+
     return (
-        <div>
-            <h2>Add your product</h2>
-            <form onSubmit={handleSubmit}>
+        <div className="ui center aligned container">
+
+            <br></br>
+            <h2>Add Your Product</h2>
+            <br></br>
+            <form onSubmit={handleSubmit} className="ui form">
+                <div className="seven wide field">
                 <input 
                     onChange={onChange}
                     value={formData.title} 
@@ -50,6 +61,8 @@ function Sell({ addProduct }) {
                     name="title" 
                     placeholder="Product Name" 
                 />
+                </div>
+                <div className="seven wide field">
                 <input 
                     onChange={onChange}
                     value={formData.image} 
@@ -57,6 +70,8 @@ function Sell({ addProduct }) {
                     name="image" 
                     placeholder="Image Url" 
                 />
+                </div>
+                <div className=" seven wide field">
                 <input 
                     onChange={onChange}
                     value={formData.price} 
@@ -65,6 +80,9 @@ function Sell({ addProduct }) {
                     name="price" 
                     placeholder="Price" 
                 />
+                </div>
+                <div className="fields">
+                <div className="field three wide">
                 <select 
                     name="category" 
                     id="category" 
@@ -72,13 +90,15 @@ function Sell({ addProduct }) {
                     value={formData.category} 
                     onChange={onChange}
                 >
-                    <option value="default">Select a category</option>
-                    <option value="Food">Food {"&"} Drink</option>
+                    <option value="default">Select a Category</option>
+                    <option value="Food">Food</option>
                     <option value="Home">Home</option>
                     <option value="Apparel">Apparel</option>
                     <option value="Entertainment">Entertainment</option>
                     <option value="Miscellaneous">Miscellaneous</option>
                 </select>
+                </div>
+                <div className="three wide field">
                 <select 
                     name="seller" 
                     id="seller" 
@@ -86,14 +106,12 @@ function Sell({ addProduct }) {
                     value={formData.seller} 
                     onChange={onChange}
                 >
-                    <option value="default">Select a seller</option>
-                    <option value="Jim Halpert">Jim Halpert</option>
-                    <option value="Pam Beesley">Pam Beesley</option>
-                    <option value="Dwight Schrute">Dwight Schrute</option>
-                    <option value="Michael Scott">Michael Scott</option>
-                    <option value="Jan Levinson">Jan Levinson</option>
+                    <option value="default">Select a Seller</option>
+                    {sellerList}
                 </select>
-                <input type="submit" value="Submit" />
+                </div>
+                </div>
+                <input className="ui button" type="submit" value="Submit" />
             </form>
         </div>
     )

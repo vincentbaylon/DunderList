@@ -40,7 +40,7 @@ const selectedLink ={
 
 function Header({ cart }) {
     return (
-        <header style={headerStyle}>
+        <header style={headerStyle} className="ui container">
             <div id="logo" style={logoStyle}>
             <p>DunderList</p>
             </div>

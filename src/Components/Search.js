@@ -1,9 +1,9 @@
 import React from 'react'
 
-function Search({ search, setSearch }) {
+function Search({ search, setSearch, sideBarElementStyle }) {
 
     return (
-        <div className="ui icon input">
+        <div className="ui icon input" style={sideBarElementStyle}>
             <input 
                 type="text" 
                 placeholder="Search..." 
