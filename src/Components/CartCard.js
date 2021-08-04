@@ -46,7 +46,7 @@ function CartCard({ product, removeFromCart }) {
                     <h5>{title} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ${price}</h5>
                 </div>
                 <div className="column" style={buttonCol}>
-                    <button className="ui tiny button"onClick={handleClick} style={buttonStyle}><i class="close icon"></i></button>
+                    <button className="ui tiny button"onClick={handleClick} style={buttonStyle}><i className="close icon"></i></button>
                 </div>
             </div>
         </div>

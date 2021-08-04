@@ -13,7 +13,6 @@ function Shop({ products, search, setSearch, setFilter, addToCart, removeFromCar
         padding: '20px',
         marginTop: '20px',
         display: 'block',
-        maxWidth: '300px'
        // backgroundColor: 'gray',
     }
 
@@ -25,7 +24,7 @@ function Shop({ products, search, setSearch, setFilter, addToCart, removeFromCar
 
     return (
         <div className="row">
-                <div className="ui" style={sideBarStyle}>
+                <div className="ui " style={sideBarStyle}>
                     <Sort setSort={setSort} sideBarElementStyle={sideBarElementStyle}/>
                     <Filters filter={filter} setFilter={setFilter}  sideBarElementStyle={sideBarElementStyle}/>
                     <Search seach={search} setSearch={setSearch} sideBarElementStyle={sideBarElementStyle}/>
