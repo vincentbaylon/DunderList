@@ -5,6 +5,7 @@ import Shop from './Shop'
 import Sell from './Sell'
 import About from './About'
 import Cart from './Cart'
+import Login from './Login'
 
 function App() {
   const [products, setProducts] = useState([])
@@ -83,6 +84,9 @@ function App() {
       </Route>
       <Route path="/cart">
         <Cart cart={cart} products={products} removeFromCart={removeFromCart} />
+      </Route>
+      <Route path="/login">
+        <Login />
       </Route>
       <Route exact path="/">
         <Shop products={displayProducts} setFilter={setFilter} filter={filter} search={search} setSearch={setSearch} addToCart={addToCart} removeFromCart={removeFromCart} setSort={setSort} />
