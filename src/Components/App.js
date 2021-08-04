@@ -14,6 +14,7 @@ function App() {
   const [sort, setSort] = useState('')
   const [cart, setCart] = useState([])
   const [sellers, setSellers] = useState([])
+  const [currentUser, setCurrentUser] = useState(null)
 
   //array of only names of the sellers
   const sellerNames = sellers.map(seller => seller.name)
@@ -87,7 +88,7 @@ function App() {
         <Cart cart={cart} products={products} removeFromCart={removeFromCart} />
       </Route>
       <Route path="/login">
-        <Login />
+        <Login setCurrentUser={setCurrentUser} />
       </Route>
       <Route exact path="/">
         <Shop products={displayProducts} setFilter={setFilter} filter={filter} search={search} setSearch={setSearch} addToCart={addToCart} removeFromCart={removeFromCart} setSort={setSort} cart={cart} />

@@ -1,6 +1,8 @@
 import { useState } from 'react'
+import { useHistory } from 'react-router-dom'
 
-function Login() {
+function Login({ setCurrentUser }) {
+    const history = useHistory()
     const [login, setLogin] = useState(true)
     const [formData, setFormData] = useState({
         email: '',
@@ -22,7 +24,23 @@ function Login() {
         e.preventDefault()
 
         if (login) {
-            console.log("LOGGING IN")
+            fetch('http://localhost:3000/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (typeof data !== 'object') {
+                    alert(data)
+                } else {
+                    setCurrentUser(data)
+                    alert("Logged in")
+                    history.push("/")
+                }
+            })
         } else {
             fetch('http://localhost:3000/users')
             .then(res => res.json())
