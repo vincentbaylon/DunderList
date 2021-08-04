@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
 
-function ProductCard( { product, addToCart, removeFromCart }) {
+function ProductCard( { product, addToCart, removeFromCart, cart }) {
 
     const { id, title, image, seller, price, category, comments, inCart } = product
     const [isInCart, setIsInCart] = useState(false)
@@ -22,7 +22,7 @@ function ProductCard( { product, addToCart, removeFromCart }) {
     }
 
     function handleCartToggle(){
-        isInCart? removeFromCart(id) : addToCart(id)
+        (cart.includes(id))? removeFromCart(id) : addToCart(id)
         setIsInCart(!isInCart)
     }
 
@@ -39,7 +39,7 @@ function ProductCard( { product, addToCart, removeFromCart }) {
             <h3 className="ui header">{title}</h3>
             <h5 className="ui header">{seller}</h5>
             <h5 className="ui header">${price}</h5> 
-            <button className="ui button" onClick={handleCartToggle}>{isInCart? "Remove from Cart" : "Add to Cart"}</button>
+            <button className="ui button" onClick={handleCartToggle}>{(cart.includes(id))? "Remove from Cart" : "Add to Cart"}</button>
             </div>
         </div>
     )

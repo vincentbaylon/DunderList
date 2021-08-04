@@ -22,7 +22,7 @@ function Login() {
         e.preventDefault()
 
         if (login) {
-
+            console.log("LOGGING IN")
         } else {
             fetch('http://localhost:3000/users')
             .then(res => res.json())
