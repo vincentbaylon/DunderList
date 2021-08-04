@@ -58,7 +58,16 @@ function Login({ setCurrentUser, setLoggedIn }) {
                         body: JSON.stringify(formData)
                     })
                     .then(res => res.json())
-                    .then(data => console.log('SUCCESS', data))
+                    .then(data => {
+                        if (typeof data !== 'object') {
+                            alert(data)
+                        } else {
+                            setCurrentUser(data)
+                            setLoggedIn(true)
+                            alert("Welcome to DunderList!")
+                            history.push("/")
+                        }
+                    })
                 }
             })
         }
