@@ -21,18 +21,28 @@ function Login() {
     function handleSubmit(e) {
         e.preventDefault()
 
-        fetch('http://localhost:3000/users', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(formData)
-        })
-        .then(res => res.json())
-        .then(data => console.log('SUCCESS', data))
-        .catch((error) => {
-            console.error('ERROR', error)
-        })
+        if (login) {
+
+        } else {
+            fetch('http://localhost:3000/users')
+            .then(res => res.json())
+            .then(data => {
+                let findUser = data.find((eachUser) => eachUser.email === formData.email)
+                if (findUser) {
+                    alert("Email already taken, login instead.")
+                } else {
+                    fetch('http://localhost:3000/users', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(formData)
+                    })
+                    .then(res => res.json())
+                    .then(data => console.log('SUCCESS', data))
+                }
+            })
+        }
 
         setFormData({
             email: '',
