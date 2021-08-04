@@ -37,10 +37,12 @@ const selectedLink ={
     fontWeight: "bold"
 }
 
-function Header({ cart, loggedIn, setCurrentUser, setLoggedIn }) {
+function Header({ cart, loggedIn, setCurrentUser, setLoggedIn, setCart }) {
     function handleClick() {
         setCurrentUser(null)
         setLoggedIn(false)
+        setCart([])
+
     }
 
     return (
@@ -55,7 +57,7 @@ function Header({ cart, loggedIn, setCurrentUser, setLoggedIn }) {
                 <NavLink to="/cart" style={linkStyles} activeStyle={selectedLink}>Cart {(cart.length > 0) ? `(${cart.length})` : '' }</NavLink>
 
                 {loggedIn ? 
-                    <button onClick={handleClick} style={linkStyles}>Logout</button> :
+                    <button className="ui black tiny button" onClick={handleClick} style={linkStyles}>Logout</button> :
                     <NavLink to="/login" style={linkStyles} activeStyle={selectedLink}>Login</NavLink>  
                 }
                 

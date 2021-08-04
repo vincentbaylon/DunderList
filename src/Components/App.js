@@ -118,7 +118,7 @@ function App() {
 
   return (
     <div>
-      <Header cart={cart} loggedIn={loggedIn} setCurrentUser={setCurrentUser} setLoggedIn={setLoggedIn} />
+      <Header cart={cart} loggedIn={loggedIn} setCurrentUser={setCurrentUser} setLoggedIn={setLoggedIn} setCart={setCart} />
 
     <Switch>
       <Route path="/sell">
