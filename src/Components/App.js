@@ -39,7 +39,11 @@ function App() {
     if (loggedIn) {
       fetch(`http://localhost:3000/users/${currentUser.user.id}`)
       .then(res => res.json())
-      .then(user => setCart(user.cart))
+      .then(user => {
+        if (user.cart !== undefined) {
+          setCart(user.cart)
+        }
+      })
     }
   }, [loggedIn])
 
