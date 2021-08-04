@@ -12,6 +12,8 @@ function Shop({ products, search, setSearch, setFilter, addToCart, removeFromCar
         width: '15%',
         padding: '20px',
         marginTop: '20px',
+        display: 'block',
+        maxWidth: '300px'
        // backgroundColor: 'gray',
     }
 
@@ -20,20 +22,15 @@ function Shop({ products, search, setSearch, setFilter, addToCart, removeFromCar
         marginBottom: '20px'
     }
 
-    const bodyStyling = {
-        width: '80%'
-    }
 
     return (
         <div className="row">
-                <div className="column" style={sideBarStyle}>
+                <div className="ui" style={sideBarStyle}>
                     <Sort setSort={setSort} sideBarElementStyle={sideBarElementStyle}/>
                     <Filters filter={filter} setFilter={setFilter}  sideBarElementStyle={sideBarElementStyle}/>
                     <Search seach={search} setSearch={setSearch} sideBarElementStyle={sideBarElementStyle}/>
                 </div>
-                <div className="column" style={bodyStyling}>
-                    <ProductList products={products} addToCart={addToCart} removeFromCart={removeFromCart}/>
-                </div>
+                <ProductList products={products} addToCart={addToCart} removeFromCart={removeFromCart}/>
         </div>
     )
 }

@@ -1,7 +1,6 @@
 function Sort({ setSort, sideBarElementStyle }) {
     function onChange(e) {
         setSort(e.target.value)
-        console.log(e.target.value)
     }
 
     return (
