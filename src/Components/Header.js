@@ -57,7 +57,7 @@ function Header({ cart, loggedIn, setCurrentUser, setLoggedIn, setCart }) {
                 <NavLink to="/cart" style={linkStyles} activeStyle={selectedLink}>Cart {(cart.length > 0) ? `(${cart.length})` : '' }</NavLink>
 
                 {loggedIn ? 
-                    <button onClick={handleClick} style={linkStyles}>Logout</button> :
+                    <button className="ui black tiny button" onClick={handleClick} style={linkStyles}>Logout</button> :
                     <NavLink to="/login" style={linkStyles} activeStyle={selectedLink}>Login</NavLink>  
                 }
                 
