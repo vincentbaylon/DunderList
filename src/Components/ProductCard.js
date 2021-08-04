@@ -17,6 +17,13 @@ function ProductCard( { product, addToCart, removeFromCart }) {
         float: 'left',
     }
 
+    const imgStyle = {
+        overflow: 'hidden',
+        objectFit: 'cover',
+        height: '140px',
+        width: '140px',
+    }
+
     function handleCartToggle(){
         isInCart? removeFromCart(id) : addToCart(id)
         setIsInCart(!isInCart)
@@ -29,13 +36,13 @@ function ProductCard( { product, addToCart, removeFromCart }) {
     return (
         <div className="ui card" style={tempCardStyle}> 
             <i onClick={handleLike} className={isLiked? "heart icon" : " heart outline icon"}></i>
-            <img src={image} className="ui small centered image"/>
-            <div >
+            <img src={image} className="ui small centered image" style={imgStyle}/>
+            <div className="content">
             <h3 className="ui header">{title}</h3>
             <h5 className="ui header">{seller}</h5>
             <h5 className="ui header">${price}</h5> 
+            <button className="ui button" onClick={handleCartToggle}>{isInCart? "Remove from Cart" : "Add to Cart"}</button>
             </div>
-            <button onClick={handleCartToggle}>{isInCart? "Remove from Cart" : "Add to Cart"}</button>
         </div>
     )
 }

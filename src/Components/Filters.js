@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 
 function Filters({ setFilter, filter, sideBarElementStyle }) {
-    const [category, setCategory] = useState('')
+    //const [category, setCategory] = useState('')
     const categories = [
         "Food",
         "Home",
@@ -12,20 +12,21 @@ function Filters({ setFilter, filter, sideBarElementStyle }) {
 
     const checkboxStyle ={
         marginTop: '10px',
-        marginBottom: '10px'
+        marginBottom: '10px',
+        marginRight: '90px',
     }
 
     const displayCategories = categories.map((eachCategory) => {
         return (
-            <div style={checkboxStyle}>
-            <label key={eachCategory}>
+            <div style={checkboxStyle} className="ui checkbox">
             <input 
                 type='checkbox'
                 name={eachCategory} 
-                onChange={handleChange}            
+                onChange={handleChange}    
             />
+            <label key={eachCategory}>
             {eachCategory}
-        </label>
+            </label>
         </div>
         )
     })
@@ -40,7 +41,7 @@ function Filters({ setFilter, filter, sideBarElementStyle }) {
     }
 
     return (
-        <div  style={sideBarElementStyle} className="ui checkbox"  >
+        <div style={sideBarElementStyle} className="ui vertical">
             <h4>Filter:</h4>
             {displayCategories}
         </div>

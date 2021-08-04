@@ -28,7 +28,7 @@ function App() {
     fetch(`https://api.tvmaze.com/shows/526/cast`)
     .then(res => res.json())
     .then(data => {
-        console.log('external fetch done')
+       // console.log('external fetch done')
         setSellers(data.map(item => item.character))
     })
 }, [])

@@ -6,6 +6,7 @@ function SellerList({ sellers }) {
     const renderSellers = sellers.map(seller => {
         if (seller.image !== null)
         return (<SellerCard seller={seller} key={seller.id}/>)
+        else return null
     })
 
     return (

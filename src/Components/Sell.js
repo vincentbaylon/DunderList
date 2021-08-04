@@ -45,15 +45,19 @@ function Sell({ addProduct, sellerNames }) {
         )
     })
 
+    const divStyle = {
+        width: '40%',
+    }
+
 
     return (
-        <div className="ui center aligned container">
+        <div className="ui center aligned container" style={divStyle}>
 
             <br></br>
             <h2>Add Your Product</h2>
             <br></br>
             <form onSubmit={handleSubmit} className="ui form">
-                <div className="seven wide field">
+                <div className="field">
                 <input 
                     onChange={onChange}
                     value={formData.title} 
@@ -62,7 +66,7 @@ function Sell({ addProduct, sellerNames }) {
                     placeholder="Product Name" 
                 />
                 </div>
-                <div className="seven wide field">
+                <div className="field">
                 <input 
                     onChange={onChange}
                     value={formData.image} 
@@ -71,7 +75,7 @@ function Sell({ addProduct, sellerNames }) {
                     placeholder="Image Url" 
                 />
                 </div>
-                <div className=" seven wide field">
+                <div className="field">
                 <input 
                     onChange={onChange}
                     value={formData.price} 
@@ -81,8 +85,8 @@ function Sell({ addProduct, sellerNames }) {
                     placeholder="Price" 
                 />
                 </div>
-                <div className="fields">
-                <div className="field three wide">
+                <div className="equal width fields">
+                <div className="field">
                 <select 
                     name="category" 
                     id="category" 
@@ -98,7 +102,7 @@ function Sell({ addProduct, sellerNames }) {
                     <option value="Miscellaneous">Miscellaneous</option>
                 </select>
                 </div>
-                <div className="three wide field">
+                <div className="field">
                 <select 
                     name="seller" 
                     id="seller" 
