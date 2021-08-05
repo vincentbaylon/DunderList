@@ -1,11 +1,11 @@
 import React from 'react'
 import { useState } from 'react'
 
-function ProductCard( { product, addToCart, removeFromCart, cart }) {
+function ProductCard( { product, addToCart, removeFromCart, cart, addLikes, userLiked, removeLikes }) {
 
     const { id, title, image, seller, price, category, comments, inCart, inStock } = product
     const [isInCart, setIsInCart] = useState(false)
-    const [isLiked, setIsLiked] = useState(false)
+    const [isLiked, setIsLiked] = useState(userLiked)
 
 //temporary CSS
     const tempCardStyle = {
@@ -28,12 +28,18 @@ function ProductCard( { product, addToCart, removeFromCart, cart }) {
     }
 
     function handleLike(){
-        setIsLiked(!isLiked)
+        if (isLiked) {
+            removeLikes(id)
+            setIsLiked(!isLiked)
+        } else {
+            addLikes(id)
+            setIsLiked(!isLiked)
+        }    
     }
 
     return (
-        <div className="ui card" style={tempCardStyle}> 
-            <i onClick={handleLike} className={isLiked? "heart icon" : " heart outline icon"}></i>
+        <div className="ui card" style={tempCardStyle}>
+            <i onClick={handleLike} className={userLiked? "heart icon" : " heart outline icon"}></i>
             <img src={image} className="ui small centered image" style={imgStyle}/>
             <br></br>
             <div >

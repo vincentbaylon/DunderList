@@ -6,7 +6,7 @@ import Sort from './Sort'
 import SellerFilter from './SellerFilter'
 
 
-function Shop({ products, search, setSearch, setFilter, addToCart, removeFromCart, setSort, filter, cart, sellerNames, setSellerFilter, sellerFilter}) { 
+function Shop({ products, search, setSearch, setFilter, addToCart, removeFromCart, setSort, filter, cart, sellerNames, setSellerFilter, sellerFilter, addLikes, likes, removeLikes }) { 
 
     const sideBarStyle ={
         float: 'left',
@@ -33,7 +33,7 @@ function Shop({ products, search, setSearch, setFilter, addToCart, removeFromCar
                     <Filters filter={filter} setFilter={setFilter}  sideBarElementStyle={sideBarElementStyle}/>
                     <SellerFilter sellerNames={sellerNames} sideBarElementStyle={sideBarElementStyle} setSellerFilter={setSellerFilter} sellerFilter={sellerFilter}/> 
                 </div>
-                <ProductList products={products} addToCart={addToCart} removeFromCart={removeFromCart} cart={cart}/>
+                <ProductList products={products} addToCart={addToCart} removeFromCart={removeFromCart} cart={cart} addLikes={addLikes} likes={likes} removeLikes={removeLikes} />
         </div>
     )
 }
