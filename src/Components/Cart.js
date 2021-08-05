@@ -96,9 +96,9 @@ function Cart({ cart, products, removeFromCart, setCart, currentUser }) {
             <h5>Express Checkout</h5>
             <br></br>
             <div className="ui one row center aligned grid">
-                <button><img src="./paypal.png" onClick={handleClick} style={paypalStyle}/></button>
-                <button><img src="./google.png" onClick={handleClick} style={googleStyle}/></button>
-                <button><img src="./apple.png" onClick={handleClick} style={appleStyle}/></button>
+                <button className="ui basic button"><img src="./paypal.png" onClick={handleClick} style={paypalStyle}/></button>
+                <button className="ui basic button"><img src="./google.png" onClick={handleClick} style={googleStyle}/></button>
+                <button className="ui basic button"><img src="./apple.png" onClick={handleClick} style={appleStyle}/></button>
             </div>
           
         </div>
