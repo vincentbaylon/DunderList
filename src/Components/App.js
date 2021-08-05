@@ -7,9 +7,6 @@ import About from './About'
 import Cart from './Cart'
 import Login from './Login'
 
-var SalesTax = require("sales-tax")
-SalesTax.setTaxOriginCountry("US")
-
 function App() {
   const [products, setProducts] = useState([])
   const [filter, setFilter] = useState([])

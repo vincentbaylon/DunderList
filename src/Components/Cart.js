@@ -18,8 +18,9 @@ const hrStyle = {
     width: "50%"
 }
 
+const SalesTax = require("sales-tax")
+
 function Cart({ cart, products, removeFromCart, setCart, currentUser }) {
-    const SalesTax = require("sales-tax")
     SalesTax.setTaxOriginCountry("US")
 
     const filterProduct = products.filter((eachProduct) => {
@@ -34,42 +35,50 @@ function Cart({ cart, products, removeFromCart, setCart, currentUser }) {
         return product.price + accum}, 0)).toFixed(2)
 
     function handleClick() {
-        if (cart.length > 0) {
-            alert("Thank you for your purchase!")
-
-            products.forEach((eachProduct) => {
-                if (cart.includes(eachProduct.id)) {
-                    eachProduct.inStock = false
-
-                    fetch(`http://localhost:3000/products/${eachProduct.id}`, {
-                        method: 'PATCH',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({
-                            'inStock': false
-                        })
-                    })
-                    .then(res => res.json())
-                    .then(() => {
-                        setCart([])
-                        fetch(`http://localhost:3000/users/${currentUser.user.id}`, {
+        if (currentUser !== null) {
+            if (cart.length > 0) {
+                alert("Thank you for your purchase!")
+    
+                products.forEach((eachProduct) => {
+                    if (cart.includes(eachProduct.id)) {
+                        eachProduct.inStock = false
+    
+                        fetch(`http://localhost:3000/products/${eachProduct.id}`, {
                             method: 'PATCH',
                             headers: {
-                              'Content-Type': 'application/json',
-                              'Authorization': `Bearer ${currentUser.accessToken}`
+                                'Content-Type': 'application/json'
                             },
                             body: JSON.stringify({
-                              "cart": []
+                                'inStock': false
                             })
-                          })
-                          .then(res => res.json())
-                          .then(data => data)
-                    })
-                }
-            })
+                        })
+                        .then(res => res.json())
+                        .then(() => {
+                            setCart([])
+                            fetch(`http://localhost:3000/users/${currentUser.user.id}`, {
+                                method: 'PATCH',
+                                headers: {
+                                  'Content-Type': 'application/json',
+                                  'Authorization': `Bearer ${currentUser.accessToken}`
+                                },
+                                body: JSON.stringify({
+                                  "cart": []
+                                })
+                              })
+                              .then(res => res.json())
+                              .then(data => data)
+                        })
+                    }
+                })
+            }
+        } else {
+            alert("Login to complete your purchase.")
         }
     }
+
+    // function getTax() {
+    //     console.log(SalesTax.getSalesTax("US", "CA"))        
+    // }
 
     return (
         <div className="ui center aligned container">
@@ -81,7 +90,6 @@ function Cart({ cart, products, removeFromCart, setCart, currentUser }) {
             </div>
             <br></br>
             <div className="ui basic segment">
-                {console.log(SalesTax.getSalesTax("US", "CA"))}
                 <h3>Total:&nbsp;&nbsp;&nbsp;&nbsp; ${totalCost}</h3>
             </div>
             <hr style={hrStyle}></hr>
