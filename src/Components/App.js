@@ -8,6 +8,9 @@ import About from './About'
 import Cart from './Cart'
 import Login from './Login'
 
+var SalesTax = require("sales-tax")
+SalesTax.setTaxOriginCountry("US")
+
 function App() {
   const [products, setProducts] = useState([])
   const [filter, setFilter] = useState([])
@@ -145,7 +148,7 @@ function App() {
         <About sellers={sellers} setSellerFilter={setSellerFilter} products={products}/>
       </Route>
       <Route path="/cart">
-        <Cart cart={cart} products={products} removeFromCart={removeFromCart} />
+        <Cart cart={cart} products={products} removeFromCart={removeFromCart} setCart={setCart} currentUser={currentUser} />
       </Route>
       <Route path="/login">
         <Login setCurrentUser={setCurrentUser} setLoggedIn={setLoggedIn} />

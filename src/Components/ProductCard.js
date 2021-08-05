@@ -3,7 +3,7 @@ import { useState } from 'react'
 
 function ProductCard( { product, addToCart, removeFromCart, cart }) {
 
-    const { id, title, image, seller, price, category, comments, inCart } = product
+    const { id, title, image, seller, price, category, comments, inCart, inStock } = product
     const [isInCart, setIsInCart] = useState(false)
     const [isLiked, setIsLiked] = useState(false)
 
@@ -40,7 +40,7 @@ function ProductCard( { product, addToCart, removeFromCart, cart }) {
             <h3 className="ui header">{title}</h3>
             <h5 className="ui header">{seller}</h5>
             <h5 className="ui header">${price}</h5> 
-            <button className="ui button" onClick={handleCartToggle}>{(cart.includes(id))? "Remove from Cart" : "Add to Cart"}</button>
+            <button disabled={inStock ? '' : "disabled"} className="ui button" onClick={handleCartToggle}>{inStock ? ((cart.includes(id))? "Remove from Cart" : "Add to Cart") : "Out of Stock"}</button>
             </div>
         </div>
     )
