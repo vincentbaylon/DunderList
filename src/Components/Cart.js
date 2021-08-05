@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
 import CartCard from './CartCard'
+import states from '../Data/states'
 
 const paypalStyle = {
     width: "23px"
@@ -23,6 +24,9 @@ const SalesTax = require("sales-tax")
 function Cart({ cart, products, removeFromCart, setCart, currentUser }) {
     SalesTax.setTaxOriginCountry("US")
 
+    const [taxFilter, setTaxFilter] = useState('')
+    const [tax, setTax] = useState(0)
+
     const filterProduct = products.filter((eachProduct) => {
         return cart.includes(eachProduct.id)
     })
@@ -34,6 +38,9 @@ function Cart({ cart, products, removeFromCart, setCart, currentUser }) {
     const totalCost = Number.parseFloat(filterProduct.reduce((accum, product)=> {
         return product.price + accum}, 0)).toFixed(2)
 
+    const taxTotal = Number.parseFloat(tax * totalCost).toFixed(2)
+    const totalWithTax = Number.parseFloat(+totalCost + +taxTotal).toFixed(2)
+    
     function handleClick() {
         if (currentUser !== null) {
             if (cart.length > 0) {
@@ -76,9 +83,18 @@ function Cart({ cart, products, removeFromCart, setCart, currentUser }) {
         }
     }
 
-    // function getTax() {
-    //     console.log(SalesTax.getSalesTax("US", "CA"))        
-    // }
+    const stateCodes = states.map((eachState) => {
+        return (
+            <option value={eachState} key={eachState}>{eachState}</option> 
+        )
+    })
+
+    function handleChange(e) {
+        setTaxFilter(e.target.value)
+
+        SalesTax.getSalesTax("US", `${e.target.value}`)
+        .then(tax => setTax(tax.rate))
+    }
 
     return (
         <div className="ui center aligned container">
@@ -90,7 +106,20 @@ function Cart({ cart, products, removeFromCart, setCart, currentUser }) {
             </div>
             <br></br>
             <div className="ui basic segment">
-                <h3>Total:&nbsp;&nbsp;&nbsp;&nbsp; ${totalCost}</h3>
+                <select 
+                    name="tax-filter" 
+                    id="tax-filter" 
+                    aria-label="tax filter" 
+                    className="ui compact selection dropdown"
+                    onChange={handleChange}
+                    value={taxFilter}
+                >
+                    <option value="all">State</option>
+                    {stateCodes}
+                </select>
+
+                <h4>Tax:&nbsp;&nbsp;&nbsp;&nbsp; ${taxTotal}</h4>
+                <h3>Total:&nbsp;&nbsp;&nbsp;&nbsp; ${totalWithTax}</h3>
             </div>
             <hr style={hrStyle}></hr>
             <h5>Express Checkout</h5>
