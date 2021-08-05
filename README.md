@@ -1,70 +1,56 @@
-# Getting Started with Create React App
+## About This Project
+<p align="center"><img src="./public/dl.png" alt="logo" width="600px" margin="auto"></p>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+DunderList is a React single-page application online marketplace where users can buy and sell items. While this app is specific to the Scranton branch of Dunder Mifflin (NBC's The Office), the structure of the app can be used for any types of products.
 
-## Available Scripts
+<br />
 
-In the project directory, you can run:
+## Contributors
+**Vincent Baylon**
+<br />
+github: [vincentbaylon](https://github.com/vincentbaylon)
+<br />
+email: 
 
-### `npm start`
+**Claire Logan**
+<br />
+github: [clogan1](https://github.com/clogan1)
+<br />
+email: clairelogan16@gmail.com
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
 
-### `npm test`
+<br />
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Built With
+This project was built with the following:
+- [React](https://reactjs.org/)
+- [Semantic UI](https://react.semantic-ui.com/) (CSS)
+- [JSON-server Auth](https://www.npmjs.com/package/json-server-auth)
 
-### `npm run build`
+<br />
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Getting Started
+In order to set up this project locally, you will need to install and launch JSON-server and JSON-server Auth, and access our backend database [here](https://github.com/clogan1/dunderlist-backend). To start the server & server auth, use the following in CLI:
+```json-server db.json -m ./node_modules/json-server-auth```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+<br />
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+## Usage
+DunderList can be used to buy and sell personal items or products, similar to Craigslist or Etsy.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+<img src="./public/screenshot.png" alt="logo" width="1000px" margin="auto">
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+<br />
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### User Stories
+- Log in or create a new user account
+- See all items available for sale, and filter/sort/search items displayed by different criteria (price, category, seller)
+- Add or remove an item to your cart
+- Like or dislike a item
+- View your cart and check out (if signed in)
+- Add a new item to sell (if logged in)
+- See information about the site and the sellers
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

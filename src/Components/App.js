@@ -68,7 +68,7 @@ function App() {
     }
   }, [loggedIn])
 
-  //if filter is on a name, and the location = shop
+  
   useEffect(()=> {
     if (sellerFilter !== 'all' && location.pathname !== '/'){
       setSellerFilter('all')

@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { useState } from 'react'
 import CartCard from './CartCard'
 import states from '../Data/states'
@@ -17,6 +18,10 @@ const appleStyle = {
 
 const hrStyle = {
     width: "50%"
+}
+
+const linkStyle = {
+    textDecoration: 'underline'
 }
 
 const SalesTax = require("sales-tax")
@@ -100,42 +105,52 @@ function Cart({ cart, products, removeFromCart, setCart, currentUser }) {
         .then(tax => setTax(tax.rate))
     }
 
-    return (
-        <div className="ui center aligned container">
-            <br></br>
-            <h2>Your Cart</h2>
-            <br></br>
-            <div className="ui one column center aligned grid">
-                {displayProduct}
+    const emptyCart = () => {
+        return (
+            <div>
+            <p>Your cart is empty</p>
+            <Link to='/' style={linkStyle}>Get back to shopping</Link>
             </div>
-            <br></br>
-            <div className="ui basic segment">
-                <select 
-                    name="tax-filter" 
-                    id="tax-filter" 
-                    aria-label="tax filter" 
-                    className="ui compact selection dropdown"
-                    onChange={handleChange}
-                    value={taxFilter}
-                >
-                    <option value="all">State</option>
-                    {stateCodes}
-                </select>
+        )
+    }
 
-                <h4>Tax ({tax}):&nbsp;&nbsp;&nbsp;&nbsp; ${taxTotal}</h4>
-                <h3>Total:&nbsp;&nbsp;&nbsp;&nbsp; ${totalWithTax}</h3>
-            </div>
-            <hr style={hrStyle}></hr>
-            <h5>Express Checkout</h5>
-            <br></br>
-            <div className="ui one row center aligned grid">
-                <button className="ui basic button"><img src="./paypal.png" onClick={handleClick} style={paypalStyle}/></button>
-                <button className="ui basic button"><img src="./google.png" onClick={handleClick} style={googleStyle}/></button>
-                <button className="ui basic button"><img src="./apple.png" onClick={handleClick} style={appleStyle}/></button>
-            </div>
-          
+
+return (
+    <div className="ui center aligned container">
+        <br></br>
+        <h2>Your Cart</h2>
+        <br></br>
+        <div className="ui one column center aligned grid">
+            {(cart.length > 0) ? displayProduct : emptyCart()}
         </div>
-    )
+        <br></br>
+        <div className="ui basic segment">
+            <select 
+                name="tax-filter" 
+                id="tax-filter" 
+                aria-label="tax filter" 
+                className="ui compact selection dropdown"
+                onChange={handleChange}
+                value={taxFilter}
+            >
+                <option value="all">State</option>
+                {stateCodes}
+            </select>
+
+            <h4>Tax ({tax*100}%):&nbsp;&nbsp;&nbsp;&nbsp; ${taxTotal}</h4>
+            <h3>Total:&nbsp;&nbsp;&nbsp;&nbsp; ${totalWithTax}</h3>
+        </div>
+        <hr style={hrStyle}></hr>
+        <h5>Express Checkout</h5>
+        <br></br>
+        <div className="ui one row center aligned grid">
+            <button className="ui basic button"><img src="./paypal.png" onClick={handleClick} style={paypalStyle}/></button>
+            <button className="ui basic button"><img src="./google.png" onClick={handleClick} style={googleStyle}/></button>
+            <button className="ui basic button"><img src="./apple.png" onClick={handleClick} style={appleStyle}/></button>
+        </div>
+        
+    </div>
+)
 }
 
 export default Cart
