@@ -57,6 +57,7 @@ function App() {
     else setCart([...cart, id])
 
     if (loggedIn) {
+      const updateCart = [...cart, id]
       fetch(`http://localhost:3000/users/${currentUser.user.id}`, {
         method: 'PATCH',
         headers: {
@@ -64,7 +65,7 @@ function App() {
           'Authorization': `Bearer ${currentUser.accessToken}`
         },
         body: JSON.stringify({
-          "cart": cart
+          "cart": updateCart
         })
       })
       .then(res => res.json())
@@ -84,7 +85,7 @@ function App() {
           'Authorization': `Bearer ${currentUser.accessToken}`
         },
         body: JSON.stringify({
-          "cart": cart
+          "cart": updatedCart
         })
       })
       .then(res => res.json())
