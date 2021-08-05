@@ -43,6 +43,7 @@ function Filters({ setFilter, filter, sideBarElementStyle }) {
     return (
         <div style={sideBarElementStyle} className="ui vertical">
             <h4>Filter:</h4>
+            <p className="ui meta">By Cateogry</p>
             {displayCategories}
         </div>
     )

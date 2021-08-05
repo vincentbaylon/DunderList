@@ -1,5 +1,6 @@
-import { Route, Switch } from 'react-router-dom'
+import { Route, Switch, useLocation } from 'react-router-dom'
 import { useEffect, useState } from 'react'
+import { Sticky } from 'semantic-ui-react'
 import Header from './Header'
 import Shop from './Shop'
 import Sell from './Sell'
@@ -16,6 +17,8 @@ function App() {
   const [sellers, setSellers] = useState([])
   const [currentUser, setCurrentUser] = useState(null)
   const [loggedIn, setLoggedIn] = useState(false)
+  const [sellerFilter, setSellerFilter] = useState('all')
+  const location = useLocation()
 
   //array of only names of the sellers
   const sellerNames = sellers.map(seller => seller.name)
@@ -47,6 +50,13 @@ function App() {
     }
   }, [loggedIn])
 
+  //if filter is on a name, and the location = shop
+  useEffect(()=> {
+    if (sellerFilter !== 'all' && location.pathname !== '/'){
+      setSellerFilter('all')
+    }
+  }, [location])
+  
 
   function addProduct(newProduct) {
     setProducts([...products, newProduct])
@@ -57,6 +67,7 @@ function App() {
     else setCart([...cart, id])
 
     if (loggedIn) {
+      const updateCart = [...cart, id]
       fetch(`http://localhost:3000/users/${currentUser.user.id}`, {
         method: 'PATCH',
         headers: {
@@ -64,7 +75,7 @@ function App() {
           'Authorization': `Bearer ${currentUser.accessToken}`
         },
         body: JSON.stringify({
-          "cart": cart
+          "cart": updateCart
         })
       })
       .then(res => res.json())
@@ -84,7 +95,7 @@ function App() {
           'Authorization': `Bearer ${currentUser.accessToken}`
         },
         body: JSON.stringify({
-          "cart": cart
+          "cart": updatedCart
         })
       })
       .then(res => res.json())
@@ -98,6 +109,10 @@ function App() {
     } else {
       return filter.includes(eachProduct.category)
     }
+  }).filter((eachProduct) => {
+    if(sellerFilter !== 'all'){
+      return eachProduct.seller === sellerFilter
+    } else {return eachProduct}
   }).filter((eachProduct) => {
     if (search) {
       return eachProduct.title.toLowerCase().includes(search.toLowerCase())
@@ -118,14 +133,16 @@ function App() {
 
   return (
     <div>
-      <Header cart={cart} loggedIn={loggedIn} setCurrentUser={setCurrentUser} setLoggedIn={setLoggedIn} setCart={setCart} />
+      <Sticky>
+        <Header cart={cart} loggedIn={loggedIn} setCurrentUser={setCurrentUser} setLoggedIn={setLoggedIn} setCart={setCart} />
+      </Sticky>
 
     <Switch>
       <Route path="/sell">
         <Sell addProduct={addProduct} sellerNames={sellerNames} currentUser={currentUser}/>
       </Route>
       <Route path="/about">
-        <About sellers={sellers}/>
+        <About sellers={sellers} setSellerFilter={setSellerFilter} products={products}/>
       </Route>
       <Route path="/cart">
         <Cart cart={cart} products={products} removeFromCart={removeFromCart} />
@@ -134,7 +151,7 @@ function App() {
         <Login setCurrentUser={setCurrentUser} setLoggedIn={setLoggedIn} />
       </Route>
       <Route exact path="/">
-        <Shop products={displayProducts} setFilter={setFilter} filter={filter} search={search} setSearch={setSearch} addToCart={addToCart} removeFromCart={removeFromCart} setSort={setSort} cart={cart} />
+        <Shop products={displayProducts} setFilter={setFilter} filter={filter} search={search} setSearch={setSearch} addToCart={addToCart} removeFromCart={removeFromCart} setSort={setSort} cart={cart} sellerNames={sellerNames} setSellerFilter={setSellerFilter} sellerFilter={sellerFilter}/>
       </Route>
     </Switch>
 

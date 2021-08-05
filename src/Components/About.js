@@ -1,7 +1,7 @@
 import React from 'react'
 import SellerList from './SellerList'
 
-function About( { sellers }) {
+function About( { sellers, setSellerFilter, products }) {
   
     return (
         <div className="ui center aligned container">
@@ -11,7 +11,7 @@ function About( { sellers }) {
             <br></br>
             <h2>Meet the Sellers</h2>
             <br></br>
-            <SellerList sellers={sellers}/>
+            <SellerList sellers={sellers} setSellerFilter={setSellerFilter} products={products}/>
         </div>
     )
 }

@@ -12,6 +12,7 @@ function ProductCard( { product, addToCart, removeFromCart, cart }) {
         margin: '5px',
         textAlign: 'center',
         padding: '5px',
+        boxShadow: '0 1px 3px 0 #F4F7F5, 0 0 0 1px #F4F7F5',
     }
 
     const imgStyle = {
