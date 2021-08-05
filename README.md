@@ -40,7 +40,7 @@ In order to set up this project locally, you will need to install and launch JSO
 ## Usage
 DunderList can be used to buy and sell personal items or products, similar to Craigslist or Etsy.
 
-<img src="./public/screenshot.png" alt="logo" width="600px" margin="auto">
+<img src="./public/screenshot.png" alt="logo" width="1000px" margin="auto">
 
 
 <br />
