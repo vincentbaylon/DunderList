@@ -63,6 +63,7 @@ function App() {
         }
         if ((user.likes !== undefined)) {
           setLikes(user.likes)
+          setProducts(products)
         }
       })
     }

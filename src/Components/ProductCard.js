@@ -39,7 +39,7 @@ function ProductCard( { product, addToCart, removeFromCart, cart, addLikes, user
 
     return (
         <div className="ui card" style={tempCardStyle}>
-            <i onClick={handleLike} className={isLiked? "heart icon" : " heart outline icon"}></i>
+            <i onClick={handleLike} className={userLiked? "heart icon" : " heart outline icon"}></i>
             <img src={image} className="ui small centered image" style={imgStyle}/>
             <br></br>
             <div >
