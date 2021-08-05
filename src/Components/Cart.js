@@ -19,6 +19,8 @@ const hrStyle = {
 }
 
 function Cart({ cart, products, removeFromCart, setCart, currentUser }) {
+    const SalesTax = require("sales-tax")
+    SalesTax.setTaxOriginCountry("US")
 
     const filterProduct = products.filter((eachProduct) => {
         return cart.includes(eachProduct.id)
@@ -79,6 +81,7 @@ function Cart({ cart, products, removeFromCart, setCart, currentUser }) {
             </div>
             <br></br>
             <div className="ui basic segment">
+                {console.log(SalesTax.getSalesTax("US", "CA"))}
                 <h3>Total:&nbsp;&nbsp;&nbsp;&nbsp; ${totalCost}</h3>
             </div>
             <hr style={hrStyle}></hr>
