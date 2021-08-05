@@ -1,5 +1,5 @@
 import { Route, Switch, useLocation } from 'react-router-dom'
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Sticky } from 'semantic-ui-react'
 import Header from './Header'
 import Shop from './Shop'
@@ -7,6 +7,7 @@ import Sell from './Sell'
 import About from './About'
 import Cart from './Cart'
 import Login from './Login'
+import ProductCard from './ProductCard'
 
 function App() {
   const [products, setProducts] = useState([])
@@ -18,6 +19,7 @@ function App() {
   const [currentUser, setCurrentUser] = useState(null)
   const [loggedIn, setLoggedIn] = useState(false)
   const [sellerFilter, setSellerFilter] = useState('all')
+  const [likes, setLikes] = useState([])
   const location = useLocation()
 
   //array of only names of the sellers
@@ -47,17 +49,20 @@ function App() {
           setCart(user.cart)
         } else {
           fetch(`http://localhost:3000/users/${currentUser.user.id}`, {
-        method: 'PATCH',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${currentUser.accessToken}`
-        },
-        body: JSON.stringify({
-          "cart": cart
-        })
-      })
-      .then(res => res.json())
-      .then(data => data)
+          method: 'PATCH',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${currentUser.accessToken}`
+          },
+          body: JSON.stringify({
+            "cart": cart
+          })
+          })
+          .then(res => res.json())
+          .then(data => data)
+        }
+        if ((user.likes !== undefined)) {
+          setLikes(user.likes)
         }
       })
     }
@@ -116,6 +121,44 @@ function App() {
     }
   }
 
+  function addLikes(id) {    
+    if (loggedIn) {
+      const updateLikes = [...likes, id]
+      fetch(`http://localhost:3000/users/${currentUser.user.id}`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${currentUser.accessToken}`
+        },
+        body: JSON.stringify({
+          "likes": updateLikes
+        })
+      })
+      .then(res => res.json())
+      .then(() => setLikes([...likes, id]))
+    } else {
+      alert("Login to like an item.")
+    }
+  }
+
+  function removeLikes(id) {
+    if (loggedIn) {
+      const updateLikes = likes.filter(item => item !== id)
+      fetch(`http://localhost:3000/users/${currentUser.user.id}`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${currentUser.accessToken}`
+        },
+        body: JSON.stringify({
+          "likes": updateLikes
+        })
+      })
+      .then(res => res.json())
+      .then(() => setLikes(updateLikes))
+    }
+  }
+
   const displayProducts = products.filter((eachProduct) => {
     if (filter.length < 1) {
       return eachProduct
@@ -147,7 +190,7 @@ function App() {
   return (
     <div>
       <Sticky>
-        <Header cart={cart} loggedIn={loggedIn} setCurrentUser={setCurrentUser} setLoggedIn={setLoggedIn} setCart={setCart} />
+        <Header cart={cart} loggedIn={loggedIn} setCurrentUser={setCurrentUser} setLoggedIn={setLoggedIn} setCart={setCart} setLikes={setLikes} />
       </Sticky>
 
     <Switch>
@@ -164,7 +207,7 @@ function App() {
         <Login setCurrentUser={setCurrentUser} setLoggedIn={setLoggedIn} />
       </Route>
       <Route exact path="/">
-        <Shop products={displayProducts} setFilter={setFilter} filter={filter} search={search} setSearch={setSearch} addToCart={addToCart} removeFromCart={removeFromCart} setSort={setSort} cart={cart} sellerNames={sellerNames} setSellerFilter={setSellerFilter} sellerFilter={sellerFilter}/>
+        <Shop products={displayProducts} setFilter={setFilter} filter={filter} search={search} setSearch={setSearch} addToCart={addToCart} removeFromCart={removeFromCart} setSort={setSort} cart={cart} sellerNames={sellerNames} setSellerFilter={setSellerFilter} sellerFilter={sellerFilter} addLikes={addLikes} likes={likes} removeLikes={removeLikes} />
       </Route>
     </Switch>
 

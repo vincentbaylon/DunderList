@@ -37,12 +37,12 @@ const selectedLink ={
     fontWeight: "bold"
 }
 
-function Header({ cart, loggedIn, setCurrentUser, setLoggedIn, setCart }) {
+function Header({ cart, loggedIn, setCurrentUser, setLoggedIn, setCart, setLikes }) {
     function handleClick() {
         setCurrentUser(null)
         setLoggedIn(false)
         setCart([])
-
+        setLikes([])
     }
 
     return (
