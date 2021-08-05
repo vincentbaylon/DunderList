@@ -129,7 +129,7 @@ function App() {
         <About sellers={sellers}/>
       </Route>
       <Route path="/cart">
-        <Cart cart={cart} products={products} removeFromCart={removeFromCart} />
+        <Cart cart={cart} products={products} removeFromCart={removeFromCart} setCart={setCart} currentUser={currentUser} />
       </Route>
       <Route path="/login">
         <Login setCurrentUser={setCurrentUser} setLoggedIn={setLoggedIn} />
