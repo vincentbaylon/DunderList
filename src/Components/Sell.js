@@ -8,7 +8,8 @@ function Sell({ addProduct, sellerNames, currentUser }) {
         category: "default",
         seller: "default",
         comments: [],
-        inCart: false
+        inCart: false,
+        inStock: true
     })
 
     function onChange(e) {
