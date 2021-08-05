@@ -42,44 +42,48 @@ function Cart({ cart, products, removeFromCart, setCart, currentUser }) {
     const totalWithTax = Number.parseFloat(+totalCost + +taxTotal).toFixed(2)
     
     function handleClick() {
-        if (currentUser !== null) {
-            if (cart.length > 0) {
-                alert("Thank you for your purchase!")
+        if (cart.length > 0) {
+            if (currentUser !== null) {
+                if (taxFilter === '') {
+                    alert("Select your state.")
+                } else {
+                    alert("Thank you for your purchase!")
     
-                products.forEach((eachProduct) => {
-                    if (cart.includes(eachProduct.id)) {
-                        eachProduct.inStock = false
-    
-                        fetch(`http://localhost:3000/products/${eachProduct.id}`, {
-                            method: 'PATCH',
-                            headers: {
-                                'Content-Type': 'application/json'
-                            },
-                            body: JSON.stringify({
-                                'inStock': false
-                            })
-                        })
-                        .then(res => res.json())
-                        .then(() => {
-                            setCart([])
-                            fetch(`http://localhost:3000/users/${currentUser.user.id}`, {
+                    products.forEach((eachProduct) => {
+                        if (cart.includes(eachProduct.id)) {
+                            eachProduct.inStock = false
+        
+                            fetch(`http://localhost:3000/products/${eachProduct.id}`, {
                                 method: 'PATCH',
                                 headers: {
-                                  'Content-Type': 'application/json',
-                                  'Authorization': `Bearer ${currentUser.accessToken}`
+                                    'Content-Type': 'application/json'
                                 },
                                 body: JSON.stringify({
-                                  "cart": []
+                                    'inStock': false
                                 })
-                              })
-                              .then(res => res.json())
-                              .then(data => data)
-                        })
-                    }
-                })
+                            })
+                            .then(res => res.json())
+                            .then(() => {
+                                setCart([])
+                                fetch(`http://localhost:3000/users/${currentUser.user.id}`, {
+                                    method: 'PATCH',
+                                    headers: {
+                                      'Content-Type': 'application/json',
+                                      'Authorization': `Bearer ${currentUser.accessToken}`
+                                    },
+                                    body: JSON.stringify({
+                                      "cart": []
+                                    })
+                                  })
+                                  .then(res => res.json())
+                                  .then(data => data)
+                            })
+                        }
+                    })
+                }
+            } else {
+                alert("Login to complete your purchase.")
             }
-        } else {
-            alert("Login to complete your purchase.")
         }
     }
 
@@ -118,7 +122,7 @@ function Cart({ cart, products, removeFromCart, setCart, currentUser }) {
                     {stateCodes}
                 </select>
 
-                <h4>Tax:&nbsp;&nbsp;&nbsp;&nbsp; ${taxTotal}</h4>
+                <h4>Tax ({tax}):&nbsp;&nbsp;&nbsp;&nbsp; ${taxTotal}</h4>
                 <h3>Total:&nbsp;&nbsp;&nbsp;&nbsp; ${totalWithTax}</h3>
             </div>
             <hr style={hrStyle}></hr>

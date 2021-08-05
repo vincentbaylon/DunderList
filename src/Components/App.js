@@ -43,8 +43,21 @@ function App() {
       fetch(`http://localhost:3000/users/${currentUser.user.id}`)
       .then(res => res.json())
       .then(user => {
-        if (user.cart !== undefined) {
+        if ((user.cart !== undefined) && (cart.length === 0)) {
           setCart(user.cart)
+        } else {
+          fetch(`http://localhost:3000/users/${currentUser.user.id}`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${currentUser.accessToken}`
+        },
+        body: JSON.stringify({
+          "cart": cart
+        })
+      })
+      .then(res => res.json())
+      .then(data => data)
         }
       })
     }
