@@ -1,7 +1,6 @@
-import React, { useState } from 'react'
+import React from 'react'
 
 function Filters({ setFilter, filter, sideBarElementStyle }) {
-    //const [category, setCategory] = useState('')
     const categories = [
         "Food",
         "Home",

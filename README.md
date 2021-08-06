@@ -1,7 +1,7 @@
 ## About This Project
 <p align="center"><img src="./public/dl.png" alt="logo" width="600px" margin="auto"></p>
 
-DunderList is a React single-page application online marketplace where users can buy and sell items. While this app is specific to the Scranton branch of Dunder Mifflin (NBC's The Office), the structure of the app can be used for any types of products.
+DunderList is an online marketplace, built with React, where users can buy and sell items. While this app is specific to the Scranton branch of Dunder Mifflin (NBC's The Office), the structure of the app can be used for any types of products.
 
 <br />
 

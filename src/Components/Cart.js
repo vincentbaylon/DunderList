@@ -80,8 +80,6 @@ function Cart({ cart, products, removeFromCart, setCart, currentUser }) {
                                       "cart": []
                                     })
                                   })
-                                  .then(res => res.json())
-                                  .then(data => data)
                             })
                         }
                     })

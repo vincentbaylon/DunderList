@@ -7,22 +7,20 @@ import Sell from './Sell'
 import About from './About'
 import Cart from './Cart'
 import Login from './Login'
-import ProductCard from './ProductCard'
 
 function App() {
   const [products, setProducts] = useState([])
   const [filter, setFilter] = useState([])
   const [search, setSearch] = useState('')
   const [sort, setSort] = useState('')
+  const [sellerFilter, setSellerFilter] = useState('all')
   const [cart, setCart] = useState([])
+  const [likes, setLikes] = useState([])
   const [sellers, setSellers] = useState([])
   const [currentUser, setCurrentUser] = useState(null)
   const [loggedIn, setLoggedIn] = useState(false)
-  const [sellerFilter, setSellerFilter] = useState('all')
-  const [likes, setLikes] = useState([])
   const location = useLocation()
 
-  //array of only names of the sellers
   const sellerNames = sellers.map(seller => seller.name)
 
   useEffect(() => {
@@ -35,7 +33,6 @@ function App() {
     fetch(`https://api.tvmaze.com/shows/526/cast`)
     .then(res => res.json())
     .then(data => {
-       // console.log('external fetch done')
         setSellers(data.map(item => item.character))
     })
   }, [])
@@ -186,7 +183,6 @@ function App() {
     }
   })
 
-  //console.log(products)
 
   return (
     <div>
@@ -208,7 +204,22 @@ function App() {
         <Login setCurrentUser={setCurrentUser} setLoggedIn={setLoggedIn} />
       </Route>
       <Route exact path="/">
-        <Shop products={displayProducts} setFilter={setFilter} filter={filter} search={search} setSearch={setSearch} addToCart={addToCart} removeFromCart={removeFromCart} setSort={setSort} cart={cart} sellerNames={sellerNames} setSellerFilter={setSellerFilter} sellerFilter={sellerFilter} addLikes={addLikes} likes={likes} removeLikes={removeLikes} />
+        <Shop 
+            products={displayProducts} 
+            setFilter={setFilter} 
+            filter={filter} 
+            search={search} 
+            setSearch={setSearch} 
+            addToCart={addToCart} 
+            removeFromCart={removeFromCart} 
+            setSort={setSort} 
+            cart={cart} 
+            sellerNames={sellerNames} 
+            setSellerFilter={setSellerFilter} 
+            sellerFilter={sellerFilter} 
+            addLikes={addLikes} 
+            likes={likes} 
+            removeLikes={removeLikes} />
       </Route>
     </Switch>
 

@@ -5,9 +5,7 @@ function ProductCard( { product, addToCart, removeFromCart, cart, addLikes, user
 
     const { id, title, image, seller, price, category, comments, inCart, inStock } = product
     const [isInCart, setIsInCart] = useState(false)
-    const [isLiked, setIsLiked] = useState(userLiked)
 
-//temporary CSS
     const tempCardStyle = {
         margin: '5px',
         textAlign: 'center',
@@ -30,10 +28,10 @@ function ProductCard( { product, addToCart, removeFromCart, cart, addLikes, user
     function handleLike(){
         if (userLiked) {
             removeLikes(id)
-            setIsLiked(!userLiked)
+            userLiked = !userLiked
         } else {
             addLikes(id)
-            setIsLiked(!userLiked)
+            userLiked = !userLiked
         }    
     }
 
