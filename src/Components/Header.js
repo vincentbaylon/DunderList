@@ -46,7 +46,7 @@ function Header({ cart, loggedIn, setCurrentUser, setLoggedIn, setCart, setLikes
     }
 
     return (
-        <header style={headerStyle} className="ui container">
+        <header style={headerStyle} className="ui container" >
             <div id="logo" style={logoStyle}>
             <p>DunderList</p>
             </div>

@@ -11,3 +11,33 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/* @media only screen and (max-width: 600px){
+  #leftNav, #sortDiv, #searchDiv, #catFilter, #sellerFilterDiv {
+    min-width: 30px;
+    max-width: 30px;
+    width: 5%;
+  }
+  #sellerFilterDiv select {
+    min-width: 30px;
+    max-width: 30px;
+    width: 5%;
+
+  }
+  #sortDiv select {
+    min-width: 30px;
+    max-width: 30px;
+    width: 5%;
+
+  }
+  #catFilter select {
+    min-width: 30px;
+    max-width: 30px;
+    padding: 0px;
+    margin: 0;
+    width: 5%;
+
+  }
+
+
+} */

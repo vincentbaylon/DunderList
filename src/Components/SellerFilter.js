@@ -15,7 +15,7 @@ function SellerFilter({ sellerNames, sideBarElementStyle, setSellerFilter, selle
 
 
     return (
-        <div style={sideBarElementStyle}>
+        <div style={sideBarElementStyle} id="sellerFilterDiv">
         <p className="ui meta">By Seller</p>
         <select 
         name="seller-filter" 

@@ -17,7 +17,7 @@ function Filters({ setFilter, filter, sideBarElementStyle }) {
 
     const displayCategories = categories.map((eachCategory) => {
         return (
-            <div style={checkboxStyle} className="ui checkbox">
+            <div style={checkboxStyle} className="ui checkbox" id="catFilter">
             <input 
                 type='checkbox'
                 name={eachCategory} 
