@@ -10,7 +10,7 @@ DunderList is an online marketplace, built with React, where users can buy and s
 <br />
 github: [vincentbaylon](https://github.com/vincentbaylon)
 <br />
-email: [vincentbaylon@gmail.com
+email: vincentbaylon@gmail.com
 
 **Claire Logan**
 <br />
