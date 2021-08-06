@@ -10,7 +10,7 @@ DunderList is a React single-page application online marketplace where users can
 <br />
 github: [vincentbaylon](https://github.com/vincentbaylon)
 <br />
-email: 
+email: [vincentbaylon@gmail.com
 
 **Claire Logan**
 <br />

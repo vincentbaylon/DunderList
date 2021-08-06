@@ -28,12 +28,12 @@ function ProductCard( { product, addToCart, removeFromCart, cart, addLikes, user
     }
 
     function handleLike(){
-        if (isLiked) {
+        if (userLiked) {
             removeLikes(id)
-            setIsLiked(!isLiked)
+            setIsLiked(!userLiked)
         } else {
             addLikes(id)
-            setIsLiked(!isLiked)
+            setIsLiked(!userLiked)
         }    
     }
 
