@@ -27,6 +27,7 @@ This project was built with the following:
 - [React](https://reactjs.org/)
 - [Semantic UI](https://react.semantic-ui.com/) (CSS)
 - [JSON-server Auth](https://www.npmjs.com/package/json-server-auth)
+- [Sales-Tax](https://www.npmjs.com/package/sales-tax)
 
 <br />
 
