@@ -27,7 +27,7 @@ function Shop({ products, search, setSearch, setFilter, addToCart, removeFromCar
 
     return (
         <div className="ui ">
-                <div className="column" style={sideBarStyle}>
+                <div className="column" style={sideBarStyle} id="leftNav">
                     <Search seach={search} setSearch={setSearch} sideBarElementStyle={sideBarElementStyle}/>
                     <Sort setSort={setSort} sideBarElementStyle={sideBarElementStyle}/>
                     <Filters filter={filter} setFilter={setFilter}  sideBarElementStyle={sideBarElementStyle}/>

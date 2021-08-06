@@ -4,7 +4,7 @@ function Sell({ addProduct, sellerNames, currentUser }) {
     const [formData, setFormData] = useState({
         title: "",
         image: "",
-        price: "",
+        price: 0,
         category: "default",
         seller: "default",
         comments: [],
@@ -12,11 +12,19 @@ function Sell({ addProduct, sellerNames, currentUser }) {
         inStock: true
     })
 
+
     function onChange(e) {
         let name = e.target.name
         let value = e.target.value
         setFormData({...formData, [name]: value})
+   
     }
+
+    function onPriceChange(e){
+        setFormData({...formData, price: e.target.valueAsNumber})
+    }
+
+
 
     function handleSubmit(e) {
         e.preventDefault()
@@ -83,7 +91,7 @@ function Sell({ addProduct, sellerNames, currentUser }) {
                 </div>
                 <div className="field">
                 <input 
-                    onChange={onChange}
+                    onChange={onPriceChange}
                     value={formData.price} 
                     type="number" 
                     step="0.01" 

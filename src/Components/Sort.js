@@ -4,7 +4,7 @@ function Sort({ setSort, sideBarElementStyle }) {
     }
 
     return (
-        <div style={sideBarElementStyle}>
+        <div style={sideBarElementStyle} id="sortDiv">
         <h4>Sort:</h4>
         <select 
             name="sort" 
