@@ -1,9 +1,9 @@
 const products = [
-    
+
       {
         "id": 1,
         "title": "Homemade Chili",
-        "image": "",
+        "image": "https://www.wolflair.com/wp-content/uploads/2017/01/placeholder.jpg",
         "price": 10,
         "seller": "Kevin Malone",
         "category": "Food & Drink",
@@ -13,7 +13,7 @@ const products = [
       {
         "id": 2,
         "title": "Serenity Candle",
-        "image": "",
+        "image": "https://www.wolflair.com/wp-content/uploads/2017/01/placeholder.jpg",
         "price": 20,
         "seller": "Jan Levinson Gould",
         "category": "Home",
@@ -23,7 +23,7 @@ const products = [
       {
         "id": 3,
         "title": "Organic Beets",
-        "image": "",
+        "image": "https://www.wolflair.com/wp-content/uploads/2017/01/placeholder.jpg",
         "price": 7.99,
         "seller": "Dwight Schrute",
         "category": "Food & Drink",
@@ -33,7 +33,7 @@ const products = [
       {
         "id": 4,
         "title": "Knit Ovenmitten",
-        "image": "",
+        "image": "https://www.wolflair.com/wp-content/uploads/2017/01/placeholder.jpg",
         "price": 15,
         "seller": "Phyllis Vance",
         "category": "Home",
@@ -43,7 +43,7 @@ const products = [
       {
         "id": 5,
         "title": "Dundee Award",
-        "image": "",
+        "image": "https://www.wolflair.com/wp-content/uploads/2017/01/placeholder.jpg",
         "price": 75,
         "seller": "Ryan",
         "category": "Miscellaneous”",
@@ -53,7 +53,7 @@ const products = [
       {
         "id": 6,
         "title": "Limited Edition Dunder Mifflin Paper Ream",
-        "image": "",
+        "image": "https://www.wolflair.com/wp-content/uploads/2017/01/placeholder.jpg",
         "price": 1.99,
         "seller": "Michael Scott",
         "category": "Miscellaneous”",
@@ -63,7 +63,7 @@ const products = [
       {
         "id": 7,
         "title": "Original Art",
-        "image": "",
+        "image": "https://www.wolflair.com/wp-content/uploads/2017/01/placeholder.jpg",
         "price": 35,
         "seller": "Pam Beesley",
         "category": "Home",
@@ -73,7 +73,7 @@ const products = [
       {
         "id": 8,
         "title": "Mystery Novel",
-        "image": "",
+        "image": "https://www.wolflair.com/wp-content/uploads/2017/01/placeholder.jpg",
         "price": 35,
         "seller": "Pam Beesley",
         "category": "Home",
